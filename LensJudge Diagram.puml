@@ -1,0 +1,159 @@
+@startuml
+interface ICompilation {
+    + compile(): void
+}
+
+class CompilationC {
+
+}
+
+
+
+class CompilationJava {
+
+}
+
+class CompilationCPlusPlus{
+
+}
+
+interface IVerification {
+    + verify(): void
+}
+
+class ReelVerification {
+
+}
+
+class CaseVerification {
+
+}
+
+class SpaceVerification {
+
+}
+
+class OrderVerification {
+
+}
+
+class SolSeveralVerification {
+
+}
+
+abstract class AbstractExecution {
+    # {abstract} isCompiled(File file): boolean
+    # execute(): void
+}
+
+class PythonExecution {
+
+}
+
+class CExecution {
+
+}
+
+class JavaExecution {
+
+}
+
+class CPlusPlusExecution {
+
+}
+
+interface IRepresentation {
+    + representation(): void
+}
+
+class TestRepresentation {
+
+}
+
+class ProblemRepresentation {
+
+}
+
+class ProcessRepresentation {
+
+}
+
+interface IConfig {
+    + config(): void
+}
+
+class ProblemConfig {
+
+}
+
+class ExecuteTestConfig {
+
+}
+
+class ExternalVerification {
+    + verify(): void
+}
+
+class TimeLimitation {
+    + isOutOfTime() : void
+}
+
+class MemoryLimitation {
+    + isOutOfMemory() : void
+}
+
+class Judge {
+    - judge : Judge
+    -Judge()
+    + getInstance(): Judge
+}
+
+class Main {
+    + main(): void
+}
+
+
+
+
+
+IVerification <|.. SolSeveralVerification
+IVerification <|.. OrderVerification
+IVerification <|.. SpaceVerification
+IVerification <|.. CaseVerification
+IVerification <|.. ReelVerification
+
+
+ICompilation <|.. CompilationC
+ICompilation <|.. CompilationJava
+ICompilation <|.. CompilationCPlusPlus
+
+
+AbstractExecution <|-- PythonExecution
+AbstractExecution <|-- CExecution
+AbstractExecution <|-- JavaExecution
+AbstractExecution <|-- CPlusPlusExecution
+
+
+IRepresentation <|.. TestRepresentation
+IRepresentation <|.. ProblemRepresentation
+IRepresentation <|.. ProcessRepresentation
+
+
+IConfig <|.. ProblemConfig
+IConfig <|.. ExecuteTestConfig
+
+TimeLimitation <|-- Exception
+MemoryLimitation <|-- Exception
+
+Judge -- Main
+Judge -- MemoryLimitation
+Judge -- TimeLimitation
+Judge -- ExternalVerification
+ProblemConfig -- ProblemRepresentation
+ExecuteTestConfig -- TestRepresentation
+AbstractExecution -- ICompilation
+IVerification -- AbstractExecution
+Judge -- IVerification
+IConfig -- Judge
+
+@enduml
