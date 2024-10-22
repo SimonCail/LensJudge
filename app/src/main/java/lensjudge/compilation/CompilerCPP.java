@@ -1,5 +1,7 @@
 package lensjudge.compilation;
 
+import java.io.File;
+
 public class CompilerCPP extends CompilerStrategy {
 
     @Override
@@ -9,12 +11,12 @@ public class CompilerCPP extends CompilerStrategy {
 
     @Override
     public String getBinaryFileName(String sourceFileName) {
-        return "exe";
+        return sourceFileName.replace(".cpp", ".exe");
     }
 
     @Override
-    public void executeCompilerCommand(String sourceFileName, String binaryFileName) {
-        ProcessBuilder processBuilder = new ProcessBuilder("g++", "-x", "c++" , "-Wall" , "-02" , "-pipe" , "-lm" , "-o" , binaryFileName, sourceFileName);
+    public void executeCompilerCommand(File sourceFile, File binaryFile) {
+        ProcessBuilder processBuilder = new ProcessBuilder("g++", "-x", "c++" , "-Wall" , "-O2" , "-pipe" , "-lm" , "-o" , binaryFile.getAbsolutePath(), sourceFile.getAbsolutePath());
         processBuilder.inheritIO();
         try {
             Process process = processBuilder.start();
@@ -22,5 +24,9 @@ public class CompilerCPP extends CompilerStrategy {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    protected String getLanguage() {
+        return "cpp";
     }
 }
