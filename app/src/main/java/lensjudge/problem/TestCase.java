@@ -4,13 +4,15 @@ import java.io.File;
 
 public class TestCase {
     private String fileName;
+    private File fileIn;
+    private File fileOut;
     private String pathFileIn;
     private String pathFileOut;
 
-    public TestCase(String fileName) {
+    public TestCase(String fileName, File fileIn, File fileOut) {
         this.fileName = fileName;
-        this.pathFileIn = "/"+ fileName + ".in";
-        this.pathFileOut = "/"+ fileName + ".out";
+        this.pathFileIn = fileIn.getAbsolutePath();
+        this.pathFileOut = fileOut.getAbsolutePath();
     }
 
     public String getFileName() {
@@ -25,8 +27,8 @@ public class TestCase {
         return pathFileOut;
     }
     public boolean exists () {
-        File fileIn = new File(pathFileIn);
-        File fileOut = new File(pathFileOut);
+        fileIn = new File(pathFileIn);
+        fileOut = new File(pathFileOut);
         return fileIn.exists() && fileOut.exists();
     }
 }
