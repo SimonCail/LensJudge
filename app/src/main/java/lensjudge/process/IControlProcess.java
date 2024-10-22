@@ -6,7 +6,7 @@ public interface IControlProcess {
     String getErrorOutput() throws IOException;
     String getStandardOutput() throws IOException;
 
-    void startProcess(String... command) throws IOException;
+    void startProcess() throws IOException;
     int waitForProcess() throws InterruptedException;
     void stopProcess();
 }

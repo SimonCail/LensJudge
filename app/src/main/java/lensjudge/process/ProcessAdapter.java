@@ -5,8 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class ProcessAdapter implements IControlProcess {
-    private ProcessBuilder processBuilder;
+    private final ProcessBuilder processBuilder;
     private Process process;
+
+    public ProcessAdapter(String... command) {
+        this.processBuilder = new ProcessBuilder(command);
+    }
 
     @Override
     public String getErrorOutput() {
@@ -18,7 +22,7 @@ public class ProcessAdapter implements IControlProcess {
             StringBuilder errorOutput = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
-                errorOutput.append(line).append(System.lineSeparator());
+                errorOutput.append(line).append("\n");
             }
             return errorOutput.toString();
         } catch (IOException e) {
@@ -36,7 +40,7 @@ public class ProcessAdapter implements IControlProcess {
             StringBuilder standardOutput = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
-                standardOutput.append(line).append(System.lineSeparator());
+                standardOutput.append(line).append("\n");
             }
             return standardOutput.toString();
         } catch (IOException e) {
@@ -45,9 +49,8 @@ public class ProcessAdapter implements IControlProcess {
     }
 
     @Override
-    public void startProcess(String... command) throws IOException {
-        processBuilder = new ProcessBuilder(command);
-        process = processBuilder.start();
+    public void startProcess() throws IOException {
+        this.process = processBuilder.start();
     }
 
     @Override
