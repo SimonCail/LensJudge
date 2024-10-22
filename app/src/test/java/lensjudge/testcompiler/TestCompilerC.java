@@ -4,6 +4,8 @@ import lensjudge.compilation.CompilerC;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -31,10 +33,10 @@ public class TestCompilerC {
     @DisplayName("Test executeCompilerCommand()")
     public void testExecuteCompilerCommand() {
         CompilerC compilerC = new CompilerC();
-        String sourceFileName = "/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.c";
-        String binaryFileName = "/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.exe";
+        File sourceFile = new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.c");
+        File binaryFile = new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.exe");
         try {
-            compilerC.executeCompilerCommand(sourceFileName, binaryFileName);
+            compilerC.executeCompilerCommand(sourceFile, binaryFile);
         } catch (Exception e) {
             e.printStackTrace();
         }

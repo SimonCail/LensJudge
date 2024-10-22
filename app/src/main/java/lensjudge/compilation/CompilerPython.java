@@ -1,5 +1,7 @@
 package lensjudge.compilation;
 
+import java.io.File;
+
 public class CompilerPython extends CompilerStrategy {
 
     @Override
@@ -13,8 +15,8 @@ public class CompilerPython extends CompilerStrategy {
     }
 
     @Override
-    public void executeCompilerCommand(String sourceFileName, String binaryFileName) {
-        ProcessBuilder processBuilder = new ProcessBuilder("python3", "-m", "py_compile", sourceFileName);
+    public void executeCompilerCommand(File sourceFile, File binaryFile) {
+        ProcessBuilder processBuilder = new ProcessBuilder("python3", "-m", "py_compile", binaryFile.getAbsolutePath(), sourceFile.getAbsolutePath());
         processBuilder.inheritIO();
         try {
             Process process = processBuilder.start();
@@ -22,5 +24,9 @@ public class CompilerPython extends CompilerStrategy {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    protected String getLanguage() {
+        return "python";
     }
 }
