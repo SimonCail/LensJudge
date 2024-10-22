@@ -34,9 +34,9 @@ public class TestCompilerCPP {
     public void testExecuteCompilerCommand() {
         CompilerCPP compilerCPP = new CompilerCPP();
         File sourceFile = new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.cpp");
-        File binaryFile = new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.exe");
+        String binaryFileName = "/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.exe";
         try {
-            compilerCPP.executeCompilerCommand(sourceFile, binaryFile);
+            compilerCPP.executeCompilerCommand(sourceFile, binaryFileName);
         } catch (Exception e) {
             e.printStackTrace();
         }

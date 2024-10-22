@@ -15,8 +15,8 @@ public class CompilerCPP extends CompilerStrategy {
     }
 
     @Override
-    public void executeCompilerCommand(File sourceFile, File binaryFile) {
-        ProcessBuilder processBuilder = new ProcessBuilder("g++", "-x", "c++" , "-Wall" , "-O2" , "-pipe" , "-lm" , "-o" , binaryFile.getAbsolutePath(), sourceFile.getAbsolutePath());
+    public void executeCompilerCommand(File sourceFile, String binaryFile) {
+        ProcessBuilder processBuilder = new ProcessBuilder("g++", "-x", "c++" , "-Wall" , "-O2" , "-pipe" , "-lm" , "-o" , binaryFile, sourceFile.getAbsolutePath());
         processBuilder.inheritIO();
         try {
             Process process = processBuilder.start();

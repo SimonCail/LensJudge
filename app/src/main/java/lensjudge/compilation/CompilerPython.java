@@ -15,8 +15,8 @@ public class CompilerPython extends CompilerStrategy {
     }
 
     @Override
-    public void executeCompilerCommand(File sourceFile, File binaryFile) {
-        ProcessBuilder processBuilder = new ProcessBuilder("python3", "-m", "py_compile", binaryFile.getAbsolutePath(), sourceFile.getAbsolutePath());
+    public void executeCompilerCommand(File sourceFile, String binaryFile) {
+        ProcessBuilder processBuilder = new ProcessBuilder("python3", "-m", "py_compile", sourceFile.getAbsolutePath());
         processBuilder.inheritIO();
         try {
             Process process = processBuilder.start();
