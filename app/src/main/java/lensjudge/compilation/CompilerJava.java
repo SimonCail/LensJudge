@@ -16,7 +16,7 @@ public class CompilerJava extends CompilerStrategy{
 
     @Override
     public void executeCompilerCommand(String sourceFileName, String binaryFileName) throws IOException, InterruptedException {
-        ProcessBuilder processBuilder = new ProcessBuilder("javac", "-d", "compilation", sourceFileName);
+        ProcessBuilder processBuilder = new ProcessBuilder("javac", sourceFileName);
         processBuilder.inheritIO();
         Process process = processBuilder.start();
         process.waitFor();

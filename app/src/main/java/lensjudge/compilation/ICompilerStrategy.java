@@ -2,6 +2,9 @@ package lensjudge.compilation;
 
 import java.io.IOException;
 
+/**
+ * Interface for the compiler strategy
+ */
 public interface ICompilerStrategy {
     void compile(String sourceFileName, String languageSelected) throws IOException , InterruptedException;
     boolean isCompatible(String languageSelected);
