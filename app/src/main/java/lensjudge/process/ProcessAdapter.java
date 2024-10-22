@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 public class ProcessAdapter implements IControlProcess {
     private final ProcessBuilder processBuilder;
     private Process process;
+    private static final String PROCESSNOTSTARTED = "Proces has not been started.";
 
     public ProcessAdapter(String... command) {
         this.processBuilder = new ProcessBuilder(command);
@@ -15,14 +16,15 @@ public class ProcessAdapter implements IControlProcess {
     @Override
     public String getErrorOutput() {
         if (process == null) {
-            throw new IllegalStateException("Process has not been started.");
+            throw new IllegalStateException(PROCESSNOTSTARTED);
         }
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
         StringBuilder errorOutput = new StringBuilder();
-        String line;
         try {
-            while ((line = reader.readLine()) != null) {
+            String line = reader.readLine();
+            while (line != null) {
                 errorOutput.append(line).append("\n");
+                line = reader.readLine();
             }
         } catch (IOException e) {
             throw new RuntimeException("Error reading process error output", e);
@@ -33,14 +35,15 @@ public class ProcessAdapter implements IControlProcess {
     @Override
     public String getStandardOutput() {
         if (process == null) {
-            throw new IllegalStateException("Process has not been started.");
+            throw new IllegalStateException(PROCESSNOTSTARTED);
         }
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        StringBuilder standardOutput = new StringBuilder();
         try {
-            StringBuilder standardOutput = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
+            String line = reader.readLine();
+            while (line != null) {
                 standardOutput.append(line).append("\n");
+                line = reader.readLine();
             }
             return standardOutput.toString();
         } catch (IOException e) {
@@ -49,23 +52,31 @@ public class ProcessAdapter implements IControlProcess {
     }
 
     @Override
-    public void startProcess() throws IOException {
-        this.process = processBuilder.start();
+    public void startProcess() {
+        try {
+            this.process = processBuilder.start();
+        }catch (IOException e){
+            System.out.println(PROCESSNOTSTARTED);
+        }
     }
 
     @Override
-    public int waitForProcess() throws InterruptedException {
-        if (process == null) {
-            throw new IllegalStateException("Process has not been started.");
+    public int waitForProcess()  {
+        int result = 0;
+        try {
+            result = process.waitFor();
+        }catch (InterruptedException e){
+            System.out.println(PROCESSNOTSTARTED);
         }
-        return process.waitFor();
+        return result;
     }
 
     @Override
     public void stopProcess() {
-        if(process == null){
-            throw new IllegalStateException("Process has not been started.");
+        try {
+            process.destroy();
+        }catch (Exception e){
+            System.out.println(PROCESSNOTSTARTED);
         }
-        process.destroy();
     }
 }

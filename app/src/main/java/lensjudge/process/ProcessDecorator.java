@@ -13,17 +13,12 @@ public class ProcessDecorator implements IControlProcess {
         this.timeLimitMs = timeLimitMs;
     }
 
-    @Override
-    public void startProcess() throws IOException {
-        processControl.startProcess();
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                processControl.stopProcess();
-            }
-        }, timeLimitMs);
-    }
+        @Override
+        public void startProcess() throws IOException {
+            processControl.startProcess();
+            Timer timer = new Timer();
+            timer.schedule(new stopProcess(), timeLimitMs);
+        }
 
     @Override
     public int waitForProcess() throws InterruptedException {
@@ -43,5 +38,11 @@ public class ProcessDecorator implements IControlProcess {
     @Override
     public void stopProcess() {
         processControl.stopProcess();
+    }
+
+    protected class stopProcess extends TimerTask{
+        public void run(){
+            processControl.stopProcess();
+        }
     }
 }
