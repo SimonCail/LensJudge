@@ -20,6 +20,5 @@ public class CompilerJava extends CompilerStrategy{
         processBuilder.inheritIO();
         Process process = processBuilder.start();
         process.waitFor();
-
     }
 }
