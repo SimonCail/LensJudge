@@ -4,7 +4,7 @@ public class CompilerPython extends CompilerStrategy {
 
     @Override
     public boolean isCompatible(String languageSelected) {
-        return languageSelected.equals("python");
+        return "python".equalsIgnoreCase(languageSelected);
     }
 
     @Override

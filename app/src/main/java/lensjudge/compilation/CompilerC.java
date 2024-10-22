@@ -15,7 +15,7 @@ public class CompilerC extends CompilerStrategy {
     @Override
     public void executeCompilerCommand(String sourceFileName, String binaryFileName) {
         try {
-            ProcessBuilder processBuilder = new ProcessBuilder("gcc", "-x", "c" , "-Wall" , "-02" , "-pipe" , "-lm" , "-o" , binaryFileName, sourceFileName);
+            ProcessBuilder processBuilder = new ProcessBuilder("gcc", "-x", "c" , "-Wall" , "-O2" , "-pipe" , "-lm" , "-o" , binaryFileName, sourceFileName);
             processBuilder.inheritIO();
             Process process = processBuilder.start();
             process.waitFor();
