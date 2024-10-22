@@ -8,32 +8,32 @@
 
 ---
 
-## Répartition des tâches
+## Répartition des tâches 
 
-| Fonctionnalité                              | Patron(s) de conception utilisé(s) | Auteur(s)         |
-| ------------------------------------------- |-----------------------------------|--------------------|
-| Représentation d'un cas de test             | Composite                         |                    |
-| Représentation d'un problème                | Composite                         |                    |
-| Configuration d'un problème                 | Constructeur                      |                    |
-| Représentation d'un processus               | Composite                         |                    |
-| Limitation du temps d'exécution d'un processus| /                               |                    |
-| Limitation de la mémoire d'un processus     | /                                 |                    |
-| Compilation d'un programme C                | Stratégie                         |                    |
-| Compilation d'un programme C++              | Stratégie                         |                    |
-| Compilation d'un programme Java             | Stratégie                         |                    |
-| Compilation d'un programme Python           | Stratégie                         |                    |
-| Exécution d'un programme C compilé          | Patron de méthode                 |                    |
-| Exécution d'un programme C++ compilé        | Patron de méthode                 |                    |
-| Exécution d'un programme Java compilé       | Patron de méthode                 |                    |
-| Vérification stricte de la solution         | Décorateur                        |                    |
-| Vérification avec tolérance sur les réels   | Décorateur                        |                    |
-| Vérification avec tolérance de la casse     | Décorateur                        |                    |
-| Vérification avec tolérance sur les espaces | Décorateur                        |                    |
-| Vérification avec tolérance sur l'ordre     | Décorateur                        |                    |
-| Vérification d'une solution parmi plusieurs | Décorateur                        |                    |
-| Vérification déléguée à un programme externe|                                   |                    |
-| Configuration de l'exécution sur un cas de test| Constructeur                   |                    |
-| Programme principal de juge automatique     | Singleton                         |                    |
+| Fonctionnalité                              | Patron(s) de conception utilisé(s)| Auteur(s) |
+| ------------------------------------------- |-----------------------------------|-----------|
+| Représentation d'un cas de test             | Composite                         | Mathéo    |
+| Représentation d'un problème                | Composite                         | Mathéo    |
+| Configuration d'un problème                 | Constructeur                      | Mathéo    |
+| Représentation d'un processus               | Composite                         | Benjamain |
+| Limitation du temps d'exécution d'un processus| /                               | Benjamin  |
+| Limitation de la mémoire d'un processus     | /                                 | Benjamin  |
+| Compilation d'un programme C                | Stratégie                         | Mathias   |
+| Compilation d'un programme C++              | Stratégie                         | Mathias   |
+| Compilation d'un programme Java             | Stratégie                         | Mathias   |
+| Compilation d'un programme Python           | Stratégie                         | Mathias   |
+| Exécution d'un programme C compilé          | Patron de méthode                 | Simon     |
+| Exécution d'un programme C++ compilé        | Patron de méthode                 | Simon     |
+| Exécution d'un programme Java compilé       | Patron de méthode                 | Simon     |
+| Vérification stricte de la solution         | Décorateur                        |           |
+| Vérification avec tolérance sur les réels   | Décorateur                        |           |
+| Vérification avec tolérance de la casse     | Décorateur                        |           |
+| Vérification avec tolérance sur les espaces | Décorateur                        |           |
+| Vérification avec tolérance sur l'ordre     | Décorateur                        |           |
+| Vérification d'une solution parmi plusieurs | Décorateur                        |           |
+| Vérification déléguée à un programme externe|                                   |           |
+| Configuration de l'exécution sur un cas de test| Constructeur                   |           |
+| Programme principal de juge automatique     | Singleton                         |           |
 
 ---
 
