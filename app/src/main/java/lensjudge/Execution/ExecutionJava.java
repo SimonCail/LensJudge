@@ -1,5 +1,6 @@
 package lensjudge.Execution;
 
+import lensjudge.compilation.CompilerJava;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
@@ -8,13 +9,13 @@ public class ExecutionJava implements IExecution {
     public void execute(String sourceFilePath) {
         try {
             // Compile the Java source file
-            CompilerJava.compile(sourceFilePath);
-
+            CompilerJava compiler = new CompilerJava();
+            compiler.executeCompilerCommand(sourceFilePath, compiler.getBinaryFileName(sourceFilePath));
 // Extract the class name from the source file path
             String className = new File(sourceFilePath).getName().replace(".class", "");
 
 // Run the compiled Java class
-            ProcessBuilder runProcessBuilder = new ProcessBuilder("java", sourceFilePath);
+            ProcessBuilder runProcessBuilder = new ProcessBuilder("java", className);
             runProcessBuilder.directory(new File(sourceFilePath).getParentFile());
             Process runProcess = runProcessBuilder.start();
 

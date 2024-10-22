@@ -1,5 +1,7 @@
 package lensjudge.Execution;
 
+import lensjudge.compilation.CompilerCPP;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
@@ -7,14 +9,12 @@ import java.io.InputStreamReader;
 public class ExecutionCPP implements IExecution {
     public void execute(String sourceFilePath) {
         try {
-            // Compile the Java source file
-            CompilerCPP.compile(sourceFilePath);
-
-            // Extract the class name from the source file path
-            String className = new File(sourceFilePath).getName().replace(".class", "");
+            CompilerCPP compiler = new CompilerCPP();
+            String binaryFileName = compiler.getBinaryFileName(sourceFilePath);
+            compiler.executeCompilerCommand(sourceFilePath, binaryFileName);
 
             // Run the compiled C++ executable
-            ProcessBuilder runProcessBuilder = new ProcessBuilder("./output");
+            ProcessBuilder runProcessBuilder = new ProcessBuilder("./" + binaryFileName);
             runProcessBuilder.directory(new File(sourceFilePath).getParentFile());
             Process runProcess = runProcessBuilder.start();
 

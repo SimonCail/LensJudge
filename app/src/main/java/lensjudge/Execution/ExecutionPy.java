@@ -1,5 +1,6 @@
 package lensjudge.Execution;
 
+import lensjudge.compilation.CompilerPython;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
@@ -8,13 +9,12 @@ public class ExecutionPy implements IExecution {
     public void execute(String sourceFilePath) {
         try {
             // Compile the Java source file
-            CompilerPython.compile(sourceFilePath);
-
-            // Extract the class name from the source file path
-            String className = new File(sourceFilePath).getName().replace(".py", "");
+            CompilerPython compiler = new CompilerPython();
+            String binaryFileName = compiler.getBinaryFileName(sourceFilePath);
+            compiler.executeCompilerCommand(sourceFilePath, binaryFileName);
 
             // Run the compiled Java class
-            ProcessBuilder runProcessBuilder = new ProcessBuilder("python3", className);
+            ProcessBuilder runProcessBuilder = new ProcessBuilder("python3", sourceFilePath);
             runProcessBuilder.directory(new File(sourceFilePath).getParentFile());
             Process runProcess = runProcessBuilder.start();
 
