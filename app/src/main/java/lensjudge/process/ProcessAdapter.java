@@ -18,16 +18,16 @@ public class ProcessAdapter implements IControlProcess {
             throw new IllegalStateException("Process has not been started.");
         }
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+        StringBuilder errorOutput = new StringBuilder();
+        String line;
         try {
-            StringBuilder errorOutput = new StringBuilder();
-            String line;
             while ((line = reader.readLine()) != null) {
                 errorOutput.append(line).append("\n");
             }
-            return errorOutput.toString();
         } catch (IOException e) {
             throw new RuntimeException("Error reading process error output", e);
         }
+        return errorOutput.toString();
     }
 
     @Override
