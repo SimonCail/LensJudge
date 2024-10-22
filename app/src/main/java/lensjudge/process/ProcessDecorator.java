@@ -4,21 +4,18 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class ProcessDecorator implements IControlProcess {
+public abstract class ProcessDecorator implements IControlProcess {
     private final IControlProcess processControl;
-    private final long timeLimitMs;
 
-    public ProcessDecorator(IControlProcess processControl, long timeLimitMs) {
+    public ProcessDecorator(IControlProcess processControl) {
         this.processControl = processControl;
-        this.timeLimitMs = timeLimitMs;
+
     }
 
-        @Override
-        public void startProcess() throws IOException {
-            processControl.startProcess();
-            Timer timer = new Timer();
-            timer.schedule(new stopProcess(), timeLimitMs);
-        }
+    @Override
+    public void startProcess() throws IOException {
+        processControl.startProcess();
+    }
 
     @Override
     public int waitForProcess() throws InterruptedException {
@@ -40,9 +37,4 @@ public class ProcessDecorator implements IControlProcess {
         processControl.stopProcess();
     }
 
-    protected class stopProcess extends TimerTask{
-        public void run(){
-            processControl.stopProcess();
-        }
-    }
 }
