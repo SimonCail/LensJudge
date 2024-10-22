@@ -34,9 +34,9 @@ public class TestCompilerPython {
     public void testExecuteCompilerCommand() {
         CompilerPython compilerPython = new CompilerPython();
         File sourceFile = new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.py");
-        File binaryFile = new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.pyc");
+        String binaryFileName = "/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.pyc";
         try {
-            compilerPython.executeCompilerCommand(sourceFile, binaryFile);
+            compilerPython.executeCompilerCommand(sourceFile, binaryFileName);
         } catch (Exception e) {
             e.printStackTrace();
         }

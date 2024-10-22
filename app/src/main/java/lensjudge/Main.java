@@ -14,8 +14,8 @@ public class Main {
         CompilerCPP compilerCPP = new CompilerCPP();
         CompilerPython compilerPython = new CompilerPython();
 
-        File sourceFileC = new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.c");
-        File binaryFileC = new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass_c.exe");
+        File sourceFileC = new File("./ProgTestSae/timethroughtheglass.c");
+        String binaryFileC = "test/timethroughtheglass_c.exe";
         try {
             compilerC.executeCompilerCommand(sourceFileC, binaryFileC);
             System.out.println("C Compilation success");
@@ -23,8 +23,8 @@ public class Main {
             e.printStackTrace();
         }
 
-        File sourceFileCPP = new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.cc");
-        File binaryFileCPP = new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass_cpp.exe");
+        File sourceFileCPP = new File("./ProgTestSae/timethroughtheglass.cc");
+        String binaryFileCPP = "test/timethroughtheglass_cpp.exe";
         try {
             compilerCPP.executeCompilerCommand(sourceFileCPP, binaryFileCPP);
             System.out.println("CPP Compilation success");
@@ -32,8 +32,8 @@ public class Main {
             e.printStackTrace();
         }
 
-        File sourceFileJava = new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/TimeThroughTheGlass.java");
-        File binaryFileJava = new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/TimeThroughTheGlass.class");
+        File sourceFileJava = new File("test/TimeThroughTheGlass.java");
+        String binaryFileJava = "test/TimeThroughTheGlass.class";
         try {
             compilerJava.executeCompilerCommand(sourceFileJava, binaryFileJava);
             System.out.println("Java Compilation success");
@@ -41,9 +41,10 @@ public class Main {
             e.printStackTrace();
         }
 
-        File sourceFilePython = new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.py");
+        File sourceFilePython = new File("test/timethroughtheglass.py");
+        String binaryFilePython = "test/timethroughtheglass.pyc";
         try {
-            compilerPython.executeCompilerCommand(sourceFilePython, sourceFilePython);
+            compilerPython.executeCompilerCommand(sourceFilePython, binaryFilePython);
             System.out.println("Python Syntax check success");
         } catch (Exception e) {
             e.printStackTrace();

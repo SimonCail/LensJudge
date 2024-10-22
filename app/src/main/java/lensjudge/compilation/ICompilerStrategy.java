@@ -10,5 +10,5 @@ public interface ICompilerStrategy {
     void compile(String sourceFileName, String languageSelected) throws IOException , InterruptedException;
     boolean isCompatible(String languageSelected);
     String getBinaryFileName(String sourceFileName);
-    void executeCompilerCommand(File sourceFile, File binaryFile) throws IOException , InterruptedException;
+    void executeCompilerCommand(File sourceFile, String binaryFile) throws IOException , InterruptedException;
 }

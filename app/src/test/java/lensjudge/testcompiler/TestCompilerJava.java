@@ -34,9 +34,9 @@ public class TestCompilerJava {
     public void testExecuteCompilerCommand() {
         CompilerJava compilerJava = new CompilerJava();
         File sourceFile = new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.java");
-        File binaryFile = new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.class");
+        String binaryFileName = "/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.class";
         try {
-            compilerJava.executeCompilerCommand(sourceFile, binaryFile);
+            compilerJava.executeCompilerCommand(sourceFile, binaryFileName);
         } catch (Exception e) {
             e.printStackTrace();
         }

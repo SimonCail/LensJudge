@@ -34,9 +34,9 @@ public class TestCompilerC {
     public void testExecuteCompilerCommand() {
         CompilerC compilerC = new CompilerC();
         File sourceFile = new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.c");
-        File binaryFile = new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.exe");
+        String binaryFileName = "/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.exe";
         try {
-            compilerC.executeCompilerCommand(sourceFile, binaryFile);
+            compilerC.executeCompilerCommand(sourceFile, binaryFileName);
         } catch (Exception e) {
             e.printStackTrace();
         }

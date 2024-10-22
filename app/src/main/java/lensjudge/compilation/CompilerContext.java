@@ -9,12 +9,11 @@ public class CompilerContext {
         this.strategy = strategy;
     }
 
-    public void compile(String sourceFileName, String languageSelected) throws Exception {
+    public void compile(File sourceFile, String languageSelected) throws Exception {
         if (strategy == null || !strategy.isCompatible(languageSelected)) {
             throw new IllegalArgumentException("No compatible strategy set for the selected language.");
         }
-        File sourceFile = new File(sourceFileName);
-        File binaryFile = new File(strategy.getBinaryFileName(sourceFileName));
-        strategy.executeCompilerCommand(sourceFile, binaryFile);
+        String binaryFileName = strategy.getBinaryFileName(sourceFile.getName());
+        strategy.executeCompilerCommand(sourceFile, binaryFileName);
     }
 }
