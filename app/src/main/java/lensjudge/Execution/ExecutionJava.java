@@ -10,7 +10,7 @@ public class ExecutionJava implements IExecution {
         try {
             // Compile the Java source file
             CompilerJava compiler = new CompilerJava();
-            compiler.executeCompilerCommand(sourceFilePath, compiler.getBinaryFileName(sourceFilePath));
+            compiler.executeCompilerCommand(new File(sourceFilePath), null);
 // Extract the class name from the source file path
             String className = new File(sourceFilePath).getName().replace(".class", "");
 

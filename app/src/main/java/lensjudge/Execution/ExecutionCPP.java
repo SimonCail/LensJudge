@@ -11,7 +11,7 @@ public class ExecutionCPP implements IExecution {
         try {
             CompilerCPP compiler = new CompilerCPP();
             String binaryFileName = compiler.getBinaryFileName(sourceFilePath);
-            compiler.executeCompilerCommand(sourceFilePath, binaryFileName);
+            compiler.executeCompilerCommand(new File(sourceFilePath), new File(sourceFilePath).getParentFile());
 
             // Run the compiled C++ executable
             ProcessBuilder runProcessBuilder = new ProcessBuilder("./" + binaryFileName);

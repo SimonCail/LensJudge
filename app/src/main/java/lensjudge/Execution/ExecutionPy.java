@@ -11,7 +11,7 @@ public class ExecutionPy implements IExecution {
             // Compile the Java source file
             CompilerPython compiler = new CompilerPython();
             String binaryFileName = compiler.getBinaryFileName(sourceFilePath);
-            compiler.executeCompilerCommand(sourceFilePath, binaryFileName);
+            compiler.executeCompilerCommand(new File(sourceFilePath), new File(sourceFilePath).getParentFile());
 
             // Run the compiled Java class
             ProcessBuilder runProcessBuilder = new ProcessBuilder("python3", sourceFilePath);

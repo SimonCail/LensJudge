@@ -11,7 +11,7 @@ public class ExecutionC implements IExecution {
         try {
             // Compile the Java source file
             CompilerC compiler = new CompilerC();
-            compiler.executeCompilerCommand(sourceFilePath, compiler.getBinaryFileName(sourceFilePath));
+            compiler.executeCompilerCommand(new File(sourceFilePath), null);
 
             // Run the compiled C executable
             ProcessBuilder runProcessBuilder = new ProcessBuilder("./" + compiler.getBinaryFileName(sourceFilePath));
