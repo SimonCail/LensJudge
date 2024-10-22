@@ -31,12 +31,11 @@ public class CaseVerification implements IVerification {
                 BufferedReader br2 = new BufferedReader(new FileReader(fileOut));
                 String lineIn;
                 String lineOut;
-                if (fileIn.length() != fileOut.length()) {
-                    return false;
-                }
                 while ((lineIn = br.readLine()) != null && (lineOut = br2.readLine()) != null) {
                     lineIn = lineIn.replaceAll("\\s", "");
                     lineOut = lineOut.replaceAll("\\s", "");
+                    lineIn = lineIn.toLowerCase();
+                    lineOut = lineOut.toLowerCase();
                     if (!lineIn.equalsIgnoreCase(lineOut)) {
                         return false;
                     }
