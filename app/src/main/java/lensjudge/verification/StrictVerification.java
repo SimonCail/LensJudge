@@ -4,25 +4,23 @@ import java.io.*;
 
 public class StrictVerification implements IVerification {
     @Override
-    public boolean isNotEmpty(String pathFileIn, String pathFileOut) {
-        if (isFileExists(pathFileIn, pathFileOut)) {
+    public boolean isNotEmpty(String pathFileIn) {
+        if (isFileExists(pathFileIn)) {
             File fileIn = new File(pathFileIn);
-            File fileOut = new File(pathFileOut);
-            return fileIn.length() > 0 && fileOut.length() > 0;
+            return fileIn.length() > 0;
         }
         return false;
     }
 
     @Override
-    public boolean isFileExists(String pathFileIn, String pathFileOut) {
+    public boolean isFileExists(String pathFileIn) {
         File fileIn = new File(pathFileIn);
-        File fileOut = new File(pathFileOut);
-        return fileIn.exists() && fileOut.exists();
+        return fileIn.exists();
     }
 
     @Override
     public boolean verify(String pathFileIn, String pathFileOut) {
-        if (isNotEmpty(pathFileIn, pathFileOut)) {
+        if (isNotEmpty(pathFileIn) && isNotEmpty(pathFileOut)) {
             try {
                 File fileIn = new File(pathFileIn);
                 File fileOut = new File(pathFileOut);
