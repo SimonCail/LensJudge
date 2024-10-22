@@ -15,10 +15,10 @@ public class TimeProcessDecorator extends ProcessDecorator {
     public void startProcess() throws IOException {
         super.startProcess();
         Timer timer = new Timer();
-        timer.schedule(new stopProcess(), timeLimitMs);
+        timer.schedule(new StopProcess(), timeLimitMs);
     }
 
-    protected class stopProcess extends TimerTask {
+    protected class StopProcess extends TimerTask {
         public void run(){
             stopProcess();
         }
