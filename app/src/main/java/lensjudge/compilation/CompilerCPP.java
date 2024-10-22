@@ -9,7 +9,7 @@ public class CompilerCPP extends CompilerStrategy {
 
     @Override
     public String getBinaryFileName(String sourceFileName) {
-        return "exe";
+        return sourceFileName.replace(".cpp", ".exe");
     }
 
     @Override
