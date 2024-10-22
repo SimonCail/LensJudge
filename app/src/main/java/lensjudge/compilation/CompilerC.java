@@ -9,7 +9,7 @@ public class CompilerC extends CompilerStrategy {
 
     @Override
     public String getBinaryFileName(String sourceFileName) {
-        return "exe";
+        return sourceFileName.replace(".c", ".exe");
     }
 
     @Override
