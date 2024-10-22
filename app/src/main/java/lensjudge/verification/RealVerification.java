@@ -31,19 +31,16 @@ public class RealVerification implements IVerification {
                 BufferedReader br2 = new BufferedReader(new FileReader(fileOut));
                 String lineIn;
                 String lineOut;
-                float[] arrIn = new float[10];
-                float[] arrOut = new float[10];
+                float[] arrIn = new float[100];
+                float[] arrOut = new float[100];
                 int compt = 0;
-                if (fileIn.length() != fileOut.length()) {
-                    return false;
-                }
                 while ((lineIn = br.readLine()) != null && (lineOut = br2.readLine()) != null) {
                     arrIn[compt] = Float.parseFloat(lineIn);
                     arrOut[compt] = Float.parseFloat(lineOut);
-                    compt++;
-                    if (arrIn[compt] - arrOut[compt] >= 0.00001 || arrIn[compt] - arrOut[compt] <= -0.00001) {
+                    if (Math.abs(arrIn[compt] - arrOut[compt]) > 0.0001) {
                         return false;
                     }
+                    compt++;
                 }
                 return true;
             } catch (IOException e) {
