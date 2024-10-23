@@ -26,6 +26,7 @@ public class TestCase {
     public String getPathFileOut() {
         return pathFileOut;
     }
+
     public boolean exists () {
         fileIn = new File(pathFileIn);
         fileOut = new File(pathFileOut);
