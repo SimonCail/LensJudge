@@ -1,9 +1,6 @@
 package lensjudge.verification;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 
@@ -24,12 +21,11 @@ public class OrderVerication implements IVerification {
     }
 
     @Override
-    public boolean verify(String pathFileIn, String pathFileOut) {
-        if (isNotEmpty(pathFileIn) && isNotEmpty(pathFileOut)) {
+    public boolean verify(InputStream input, String pathFileOut) {
+        if (isNotEmpty(pathFileOut)) {
             try {
-                File fileIn = new File(pathFileIn);
                 File fileOut = new File(pathFileOut);
-                BufferedReader br = new BufferedReader(new FileReader(fileIn));
+                BufferedReader br = new BufferedReader(new InputStreamReader(input));
                 BufferedReader br2 = new BufferedReader(new FileReader(fileOut));
                 String lineIn;
                 String lineOut;
