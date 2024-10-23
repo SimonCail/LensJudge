@@ -3,6 +3,7 @@ package lensjudge.process;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class ProcessAdapter implements IControlProcess {
@@ -50,6 +51,13 @@ public class ProcessAdapter implements IControlProcess {
         } catch (IOException e) {
             throw new RuntimeException("Error reading process output", e);
         }
+    }
+
+    public InputStream getInputStream() {
+        if (process == null) {
+            throw new IllegalStateException(PROCESSNOTSTARTED);
+        }
+        return process.getInputStream();
     }
 
     @Override
