@@ -1,8 +1,10 @@
 package lensjudge.runnerbuilder;
 
+import lensjudge.Execution.*;
 import lensjudge.compilation.*;
 import lensjudge.problem.ConstructProblem;
 import lensjudge.problem.TestCase;
+import lensjudge.process.ProcessAdapter;
 import lensjudge.verification.IVerification;
 
 import java.io.File;
@@ -14,12 +16,13 @@ public class Runner implements IRunnerBuilder {
     private TestCase testCase;
     private ConstructProblem constructProblem;
     private ICompilerStrategy compilerStrategy;
+    private IExecution execution;
     private IVerification verification;
 
-    public Runner(File sourceFile, TestCase testCase, ConstructProblem constructProblem) {
+    public Runner(File sourceFile) {
         this.sourceFile = sourceFile;
-        this.testCase = testCase;
-        this.constructProblem = constructProblem;
+//        this.testCase = testCase;
+//        this.constructProblem = constructProblem;
     }
 
     public void setTestCase(TestCase testCase) {
@@ -40,26 +43,38 @@ public class Runner implements IRunnerBuilder {
 
     public void run() throws IOException {
         String extension = sourceFile.getName().substring(sourceFile.getName().lastIndexOf(".") + 1);
+        System.out.println(extension);
         switch (extension) {
             case "c":
+
                 compilerStrategy = new CompilerC();
+                execution = new ExecutionC();
                 break;
             case "java":
                 compilerStrategy = new CompilerJava();
+                execution = new ExecutionJava();
                 break;
             case "py":
                 compilerStrategy = new CompilerPython();
+                execution = new ExecutionPy();
                 break;
-            case "cpp":
+            case "cc":
                 compilerStrategy = new CompilerCPP();
+                execution = new ExecutionCPP();
                 break;
             default:
                 throw new IllegalArgumentException("Language not supported or not found");
         }
         try {
-            compilerStrategy.compile(sourceFile.getAbsolutePath() , compilerStrategy.getBinaryFileName(sourceFile.getName()));
+            compilerStrategy.executeCompilerCommand(sourceFile, compilerStrategy.getBinaryFileName(sourceFile.getAbsolutePath()));
+            System.out.println("Running the binary file");
+            ProcessAdapter process;
+            process = execution.execute(sourceFile.getAbsolutePath() , compilerStrategy.getBinaryFileName(sourceFile.getAbsolutePath()));
+            System.out.println(process);
+            process.startProcess();
+            System.out.println(process.getStandardOutput());
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }
