@@ -1,9 +1,6 @@
 package lensjudge.process;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class ProcessAdapter implements IControlProcess {
     private final ProcessBuilder processBuilder;
@@ -31,6 +28,14 @@ public class ProcessAdapter implements IControlProcess {
             throw new RuntimeException("Error reading process error output", e);
         }
         return errorOutput.toString();
+    }
+
+    public void setDirectory(String directory) {
+        processBuilder.directory(new File(directory));
+    }
+
+    public InputStream getInputStream() {
+        return process.getInputStream();
     }
 
     @Override

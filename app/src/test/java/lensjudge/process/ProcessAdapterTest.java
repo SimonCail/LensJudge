@@ -46,11 +46,11 @@ public class ProcessAdapterTest {
             System.err.println("Erreur : " + e.getMessage());
         }
     }
-    
+
     @Test
     @DisplayName("Return the result of the dir command")
-    public void testDir() throws IOException {
-        IControlProcess process = new ProcessAdapter("cmd", "/c", "dir"); // Commande Windows pour lister les fichiers
+    public void testDir(){
+        IControlProcess process = new ProcessAdapter("cmd", "/c", "dir"); // Windows command for listing files in a directory
         try {
             process.startProcess();
             String result = process.getStandardOutput(); 
