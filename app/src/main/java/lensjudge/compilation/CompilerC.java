@@ -21,7 +21,7 @@ public class CompilerC extends CompilerStrategy {
      */
     @Override
     public String getBinaryFileName(String sourceFileName) {
-        return sourceFileName.replace(".c", ".exe");
+        return sourceFileName.replace("C.c", ".exe");
     }
 
     /**

@@ -11,7 +11,7 @@ public class CompilerCPP extends CompilerStrategy {
      */
     @Override
     public boolean isCompatible(String languageSelected) {
-        return languageSelected.equals("cpp");
+        return languageSelected.equals("cc");
     }
 
     /**
@@ -21,7 +21,7 @@ public class CompilerCPP extends CompilerStrategy {
      */
     @Override
     public String getBinaryFileName(String sourceFileName) {
-        return sourceFileName.replace(".cpp", ".exe");
+        return sourceFileName.replace(".cc", ".exe");
     }
 
     /**
@@ -42,6 +42,6 @@ public class CompilerCPP extends CompilerStrategy {
     }
 
     protected String getLanguage() {
-        return "cpp";
+        return "cc";
     }
 }
