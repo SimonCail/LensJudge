@@ -34,13 +34,14 @@ public class OrderVerication implements IVerification {
                 String lineIn;
                 String lineOut;
                 ArrayList<String> arrOut = new ArrayList<>();
-                while((lineOut = br2.readLine()) != null) {
+                while ((lineOut = br2.readLine()) != null) {
                     arrOut.add(lineOut);
                 }
-                while ((lineIn = br.readLine()) != null) {
+                while((lineIn = br.readLine()) != null) {
                     if (!arrOut.contains(lineIn)) {
                         return false;
                     }
+                    arrOut.remove(lineIn);
                 }
                 return true;
             } catch (IOException e) {
