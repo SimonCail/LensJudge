@@ -8,16 +8,12 @@ import lensjudge.verification.IVerification;
 import java.io.File;
 import java.io.IOException;
 
-public class Runner {
+public class Runner implements IRunnerBuilder {
 
     private File sourceFile;
-
     private TestCase testCase;
-
     private ConstructProblem constructProblem;
-
     private ICompilerStrategy compilerStrategy;
-
     private IVerification verification;
 
     public Runner(File sourceFile, TestCase testCase, ConstructProblem constructProblem) {
@@ -34,30 +30,36 @@ public class Runner {
         this.constructProblem = constructProblem;
     }
 
-    public TestCase getTestCase(){
+    public TestCase getTestCase() {
         return testCase;
     }
 
-    public ConstructProblem getConstructProblem(){
+    public ConstructProblem getConstructProblem() {
         return constructProblem;
     }
 
     public void run() throws IOException {
-        String extension = sourceFile.getName().substring(sourceFile.getName().lastIndexOf("."));
-        if(extension == ".c"){
-            compilerStrategy = new CompilerC();
-        } else if(extension == ".java"){
-            compilerStrategy = new CompilerJava();
-        } else if(extension == ".py"){
-            compilerStrategy = new CompilerPython();
-        } else if(extension == ".cc"){
-            compilerStrategy = new CompilerCPP();
-        } else {
-            throw new IllegalArgumentException("Language not supported or not found");
+        String extension = sourceFile.getName().substring(sourceFile.getName().lastIndexOf(".") + 1);
+        switch (extension) {
+            case "c":
+                compilerStrategy = new CompilerC();
+                break;
+            case "java":
+                compilerStrategy = new CompilerJava();
+                break;
+            case "py":
+                compilerStrategy = new CompilerPython();
+                break;
+            case "cpp":
+                compilerStrategy = new CompilerCPP();
+                break;
+            default:
+                throw new IllegalArgumentException("Language not supported or not found");
+        }
+        try {
+            compilerStrategy.compile(sourceFile.getAbsolutePath() , compilerStrategy.getBinaryFileName(sourceFile.getName()));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
-
-
-
-
 }
