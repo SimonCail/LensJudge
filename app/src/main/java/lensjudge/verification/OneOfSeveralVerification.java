@@ -3,8 +3,7 @@ package lensjudge.verification;
 import java.io.*;
 import java.util.ArrayList;
 
-
-public class OrderVerication implements IVerification {
+public class OneOfSeveralVerification implements IVerification {
     @Override
     public boolean isNotEmpty(String pathFileIn) {
         if (isFileExists(pathFileIn)) {
@@ -33,13 +32,8 @@ public class OrderVerication implements IVerification {
                 while ((lineOut = br2.readLine()) != null) {
                     arrOut.add(lineOut);
                 }
-                while((lineIn = br.readLine()) != null) {
-                    if (!arrOut.contains(lineIn)) {
-                        return false;
-                    }
-                    arrOut.remove(lineIn);
-                }
-                return true;
+                lineIn = br.readLine();
+                return arrOut.contains(lineIn);
             } catch (IOException e) {
                 System.out.println("Error: " + e.getMessage());
             }
