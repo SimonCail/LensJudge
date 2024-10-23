@@ -6,6 +6,7 @@ import lensjudge.problem.ConstructProblem;
 import lensjudge.problem.TestCase;
 import lensjudge.process.ProcessAdapter;
 import lensjudge.verification.IVerification;
+import lensjudge.verification.StrictVerification;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,9 +20,9 @@ public class Runner implements IRunnerBuilder {
     private IExecution execution;
     private IVerification verification;
 
-    public Runner(File sourceFile) {
+    public Runner(File sourceFile, TestCase testCase) {
         this.sourceFile = sourceFile;
-//        this.testCase = testCase;
+        this.testCase = testCase;
 //        this.constructProblem = constructProblem;
     }
 
@@ -70,7 +71,8 @@ public class Runner implements IRunnerBuilder {
             process = execution.execute(sourceFile.getAbsolutePath() , compilerStrategy.getBinaryFileName(sourceFile.getAbsolutePath()));
             process.startProcess();
             System.out.println(process.getStandardOutput());
-            verification.verify(process.getStandardOutput(), testCase.getPathFileOut());
+            verification = new StrictVerification();
+            System.out.println(verification.verify(process.getInputStream(),  testCase.getPathFileOut()));
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
