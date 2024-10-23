@@ -4,8 +4,7 @@ import lensjudge.compilation.*;
 
 import java.io.File;
 
-public class RunnerBuilder implements IRunnerBuilder{
-
+public class RunnerBuilder implements IRunnerBuilder {
     private File sourceFile;
     private String inputFileName;
     private String outputFileName;
@@ -31,7 +30,7 @@ public class RunnerBuilder implements IRunnerBuilder{
     @Override
     public Runner build() {
         ICompilerStrategy compilerStrategy = chooseCompiler(sourceFile);
-        return new Runner(sourceFile, inputFileName, outputFileName , compilerStrategy);
+        return new Runner(sourceFile, inputFileName, outputFileName, compilerStrategy);
     }
 
     private ICompilerStrategy chooseCompiler(File sourceFile) {
