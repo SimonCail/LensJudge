@@ -43,7 +43,6 @@ public class Runner implements IRunnerBuilder {
 
     public void run() throws IOException {
         String extension = sourceFile.getName().substring(sourceFile.getName().lastIndexOf(".") + 1);
-        System.out.println(extension);
         switch (extension) {
             case "c":
 
@@ -67,12 +66,11 @@ public class Runner implements IRunnerBuilder {
         }
         try {
             compilerStrategy.executeCompilerCommand(sourceFile, compilerStrategy.getBinaryFileName(sourceFile.getAbsolutePath()));
-            System.out.println("Running the binary file");
             ProcessAdapter process;
             process = execution.execute(sourceFile.getAbsolutePath() , compilerStrategy.getBinaryFileName(sourceFile.getAbsolutePath()));
-            System.out.println(process);
             process.startProcess();
             System.out.println(process.getStandardOutput());
+            verification.verify(process.getStandardOutput(), testCase.getPathFileOut());
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
