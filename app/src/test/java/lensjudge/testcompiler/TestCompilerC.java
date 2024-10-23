@@ -33,8 +33,8 @@ public class TestCompilerC {
     @DisplayName("Test executeCompilerCommand()")
     public void testExecuteCompilerCommand() {
         CompilerC compilerC = new CompilerC();
-        File sourceFile = new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.c");
-        String binaryFileName = "/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.exe";
+        File sourceFile = new File("/export/etu/simon.caillieret/Documents/QDEV/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.c");
+        String binaryFileName = "/export/etu/simon.caillieret/Documents/QDEV/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglassC.exe";
         try {
             compilerC.executeCompilerCommand(sourceFile, binaryFileName);
         } catch (Exception e) {

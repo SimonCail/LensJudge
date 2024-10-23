@@ -1,32 +1,33 @@
 package lensjudge.Execution;
 
+import lensjudge.compilation.CompilerC;
 import lensjudge.compilation.CompilerPython;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.InputStreamReader;
 
 public class ExecutionPy implements IExecution {
-    public void execute(String sourceFilePath) {
+     public void execute(String sourceFilePath) {
+        CompilerPython compiler = new CompilerPython();
         try {
-            // Compile the Java source file
-            CompilerPython compiler = new CompilerPython();
-            String binaryFileName = compiler.getBinaryFileName(sourceFilePath);
-            compiler.executeCompilerCommand(new File(sourceFilePath), new File(sourceFilePath).getParentFile());
+            File sourceFile = new File(sourceFilePath);
+            compiler.executeCompilerCommand(sourceFile, null);
 
-            // Run the compiled Java class
-            ProcessBuilder runProcessBuilder = new ProcessBuilder("python3", sourceFilePath);
-            runProcessBuilder.directory(new File(sourceFilePath).getParentFile());
-            Process runProcess = runProcessBuilder.start();
+            ProcessBuilder processBuilder = new ProcessBuilder("python3", sourceFile.getAbsolutePath());
+            processBuilder.directory(sourceFile.getParentFile());
+            Process process = processBuilder.start();
 
-            // Read and print the output of the Java program
-            BufferedReader reader = new BufferedReader(new InputStreamReader(runProcess.getInputStream()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    System.out.println(line);
+                }
             }
-            runProcess.waitFor();
+            process.waitFor();
         } catch (Exception e) {
-            System.out.println("An error occurred while executing the Java program.");
+            System.out.println("Exception occurred while executing Python script: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
