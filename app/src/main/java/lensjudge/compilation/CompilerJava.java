@@ -22,9 +22,10 @@ public class CompilerJava extends CompilerStrategy {
      */
     @Override
     public String getBinaryFileName(String sourceFileName) {
-        File file = new File(sourceFileName);
-        String fileName = file.getName();
-        return fileName.replace(".java", "");
+        int size = sourceFileName.length();
+        String binaryFileName = sourceFileName.substring(0, size - 4);
+        binaryFileName = binaryFileName + "class";
+        return binaryFileName;
     }
 
     /**
