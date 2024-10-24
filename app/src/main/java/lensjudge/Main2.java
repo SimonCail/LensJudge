@@ -6,13 +6,15 @@ import lensjudge.Execution.ExecutionJava;
 import lensjudge.Execution.ExecutionPy;
 import lensjudge.compilation.CompilerC;
 import lensjudge.compilation.CompilerCPP;
+import lensjudge.compilation.CompilerJava;
 import lensjudge.compilation.CompilerPython;
 import lensjudge.process.ProcessAdapter;
 
 import java.io.File;
+import java.io.IOException;
 
 public class Main2 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InterruptedException {
         ProcessAdapter process;
         ProcessAdapter process2;
         ProcessAdapter process3;
@@ -44,23 +46,23 @@ public class Main2 {
         String sourceFilePath = "/export/etu/simon.caillieret/Documents/QDEV/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.cc";
         File sourceFile=new File(sourceFilePath);
         CompilerCPP compilerCPP=new CompilerCPP();
-        String binaryFileName;
-        binaryFileName= compilerCPP.getBinaryFileName(sourceFilePath);
-        compilerCPP.executeCompilerCommand(sourceFile, binaryFileName);
-        process=executionCPP.execute(sourceFilePath, binaryFileName);
+        String binaryFileName3;
+        binaryFileName3= compilerCPP.getBinaryFileName(sourceFilePath);
+        compilerCPP.executeCompilerCommand(sourceFile, binaryFileName3);
+        process=executionCPP.execute(sourceFilePath, binaryFileName3);
         process.startProcess();
         System.out.println(process.getStandardOutput());
         System.out.println("--------------------------------------------------------------------------------");
-    }
-}
 
-/*
         ExecutionJava executionJava = new ExecutionJava();
-        String sourceFilePath4 = "/export/etu/simon.caillieret/Documents/QDEV/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.cc";
-        process4=executionCPP.execute(sourceFilePath4);
+        String sourceFilePath4 = "/export/etu/simon.caillieret/Documents/QDEV/SAE/groupe-b2-s3.a.01/ProgTestSae/TimeThroughTheGlass.java";
+        File sourceFile4=new File(sourceFilePath4);
+        CompilerJava compilerJava=new CompilerJava();
+        String className = compilerJava.getBinaryFileName(sourceFilePath4);
+        compilerJava.executeCompilerCommand(sourceFile4,className);
+        process4=executionJava.execute(sourceFilePath4, className);
+        process4.startProcess();
         System.out.println(process4.getStandardOutput());
         System.out.println("--------------------------------------------------------------------------------");
-
- */
-
-
+    }
+}
