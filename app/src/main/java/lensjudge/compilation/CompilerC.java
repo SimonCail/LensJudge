@@ -2,6 +2,7 @@ package lensjudge.compilation;
 
 import java.io.File;
 
+
 public class CompilerC extends CompilerStrategy {
 
     /**
@@ -21,7 +22,10 @@ public class CompilerC extends CompilerStrategy {
      */
     @Override
     public String getBinaryFileName(String sourceFileName) {
-        return sourceFileName.replace("C.c", ".exe");
+        int size = sourceFileName.length();
+        String binaryFileName = sourceFileName.substring(0, size - 1);
+        binaryFileName = binaryFileName + "exe";
+        return binaryFileName;
     }
 
     /**

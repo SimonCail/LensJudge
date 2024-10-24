@@ -21,7 +21,10 @@ public class CompilerCPP extends CompilerStrategy {
      */
     @Override
     public String getBinaryFileName(String sourceFileName) {
-        return sourceFileName.replace(".cc", ".exe");
+        int size = sourceFileName.length();
+        String binaryFileName = sourceFileName.substring(0, size - 2);
+        binaryFileName = binaryFileName + "exe";
+        return binaryFileName;
     }
 
     /**
