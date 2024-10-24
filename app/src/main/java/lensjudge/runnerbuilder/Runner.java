@@ -5,6 +5,7 @@ import lensjudge.compilation.*;
 import lensjudge.problem.ConstructProblem;
 import lensjudge.problem.TestCase;
 import lensjudge.process.ProcessAdapter;
+import lensjudge.process.TimeProcessDecorator;
 import lensjudge.verification.*;
 
 import java.io.ByteArrayInputStream;
@@ -25,7 +26,6 @@ public class Runner implements IRunnerBuilder {
     public Runner(File sourceFile, TestCase testCase) {
         this.sourceFile = sourceFile;
         this.testCase = testCase;
-//        this.constructProblem = constructProblem;
     }
 
     public void setTestCase(TestCase testCase) {
@@ -71,11 +71,15 @@ public class Runner implements IRunnerBuilder {
             System.out.println("Compiling: " + sourceFile.getAbsolutePath());
             compilerStrategy.executeCompilerCommand(sourceFile, compilerStrategy.getBinaryFileName(sourceFile.getAbsolutePath()));
             ProcessAdapter process = execution.execute(sourceFile.getAbsolutePath(), compilerStrategy.getBinaryFileName(sourceFile.getAbsolutePath()));
-            process.startProcess();
-            String output = process.getStandardOutput();
-            String errorOutput = process.getErrorOutput();
+            TimeProcessDecorator timeProcess = new TimeProcessDecorator(process, 1000);
+            timeProcess.startProcess();
+            String output = timeProcess.getStandardOutput();
+            String errorOutput = timeProcess.getErrorOutput();
+            if (errorOutput != null) {
+                System.out.println("Error: " + errorOutput);
+                System.exit(0);
+            }
             System.out.println("Standard Output: " + output);
-            System.out.println("Error Output: " + errorOutput);
             System.out.println("Veuillez choisir votre type de vérification : ");
             System.out.println("1. Vérification stricte");
             System.out.println("2. Vérification sans tenir compte de l'ordre");
@@ -103,11 +107,12 @@ public class Runner implements IRunnerBuilder {
                     System.out.println("Invalid choice , defaulting to strict verification");
                     verification = new StrictVerification();
             }
-            boolean result = verification.verify(new ByteArrayInputStream(output.getBytes()), testCase.getPathFileOut());
+            TypeVerification result = verification.verify(new ByteArrayInputStream(output.getBytes()), testCase.getPathFileOut());
             System.out.println("Vérification : " + result);
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            System.out.println(TypeVerification.TIMEOUT);
+        } catch (IOException e) {
+            System.out.println(TypeVerification.ERROR);
         }
     }
-
 }

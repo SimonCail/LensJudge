@@ -1,5 +1,7 @@
 package lensjudge.process;
 
+import lensjudge.verification.TypeVerification;
+
 import java.io.*;
 
 public class ProcessAdapter implements IControlProcess {
@@ -25,7 +27,7 @@ public class ProcessAdapter implements IControlProcess {
                 line = reader.readLine();
             }
         } catch (IOException e) {
-            throw new RuntimeException("Error reading process error output", e);
+            return TypeVerification.TIMEOUT.toString();
         }
         return errorOutput.toString();
     }
@@ -53,7 +55,7 @@ public class ProcessAdapter implements IControlProcess {
             }
             return standardOutput.toString();
         } catch (IOException e) {
-            throw new RuntimeException("Error reading process output", e);
+            return TypeVerification.TIMEOUT.toString();
         }
     }
 

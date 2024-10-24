@@ -19,7 +19,7 @@ public class RealVerification implements IVerification {
     }
 
     @Override
-    public boolean verify(InputStream input, String pathFileOut) {
+    public TypeVerification verify(InputStream input, String pathFileOut) {
         if (isNotEmpty(pathFileOut)) {
             try {
                 File fileOut = new File(pathFileOut);
@@ -34,15 +34,15 @@ public class RealVerification implements IVerification {
                     arrIn[compt] = Float.parseFloat(lineIn);
                     arrOut[compt] = Float.parseFloat(lineOut);
                     if (Math.abs(arrIn[compt] - arrOut[compt]) > 0.0001) {
-                        return false;
+                        return TypeVerification.FALSE;
                     }
                     compt++;
                 }
-                return true;
+                return TypeVerification.TRUE;
             } catch (IOException e) {
                 System.out.println("Error: " + e.getMessage());
             }
         }
-        return false;
+        return TypeVerification.FALSE;
     }
 }
