@@ -109,5 +109,14 @@ public class ProcessAdapterTest {
         reader.close();
     }
 
+    @Test
+    @DisplayName("Test stopping a process")
+    public void testStopProcessWhenNotStarted() {
+        ProcessAdapter processAdapter = new ProcessAdapter("cmd", "/c", "echo", "test");
+        processAdapter.stopProcess();
+
+        assertDoesNotThrow(() -> processAdapter.stopProcess(), "Should not throw an exception when stopping a non-started process.");
+    }
+
 
 }
