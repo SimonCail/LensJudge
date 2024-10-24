@@ -5,7 +5,7 @@ import java.io.*;
 public class ProcessAdapter implements IControlProcess {
     private final ProcessBuilder processBuilder;
     private Process process;
-    private static final String PROCESSNOTSTARTED = "Process has not been started.";
+    private static final String PROCESSNOTSTARTED = "Proces has not been started.";
 
     public ProcessAdapter(String... command) {
         this.processBuilder = new ProcessBuilder(command);
