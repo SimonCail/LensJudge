@@ -103,7 +103,7 @@ public class Runner implements IRunnerBuilder {
                     System.out.println("Invalid choice , defaulting to strict verification");
                     verification = new StrictVerification();
             }
-            boolean result = verification.verify(new ByteArrayInputStream(output.getBytes()), testCase.getPathFileOut());
+            TypeVerification result = verification.verify(new ByteArrayInputStream(output.getBytes()), testCase.getPathFileOut());
             System.out.println("Vérification : " + result);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

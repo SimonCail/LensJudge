@@ -19,7 +19,7 @@ public class StrictVerification implements IVerification {
     }
 
     @Override
-    public boolean verify(InputStream input, String pathFileOut) {
+    public TypeVerification verify(InputStream input, String pathFileOut) {
         if (isNotEmpty(pathFileOut)) {
             try {
                 File fileOut = new File(pathFileOut);
@@ -34,16 +34,16 @@ public class StrictVerification implements IVerification {
                     System.out.println("lineIn: " + lineIn + " | lineOut: " + lineOut); // Affiche les lignes comparées
                     if (!lineIn.equals(lineOut)) {
                         System.out.println("Mismatch: lineIn (" + lineIn + ") != lineOut (" + lineOut + ")");
-                        return false;
+                        return TypeVerification.FALSE;
                     }
                 }
 
-                return true;
+                return TypeVerification.TRUE;
             } catch (IOException e) {
                 System.out.println("Error: " + e.getMessage());
             }
         }
-        return false;
+        return TypeVerification.FALSE;
     }
 
 
