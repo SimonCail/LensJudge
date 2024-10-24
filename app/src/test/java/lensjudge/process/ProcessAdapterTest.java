@@ -11,7 +11,7 @@ public class ProcessAdapterTest {
     @Test
     @DisplayName("Return the standard output of a Java program")
     public void testGetStandardOutput() {
-        IControlProcess process = new ProcessAdapter("java", "C:/Users/Benji/Documents/COUR/BUT2/SAEA3.01/groupe-b2-s3.a.01/app/src/test/java/lensjudge/process/Test.java");
+        IControlProcess process = new ProcessAdapter("java", "C:/Users/Benji/Documents/COUR/BUT2/SAEA3.01/groupe-b2-s3.a.01/app/src/test/resources/Test.java");
         TimeProcessDecorator timedProcess = new TimeProcessDecorator(process, 5000);
         try{
             timedProcess.startProcess();
@@ -27,7 +27,7 @@ public class ProcessAdapterTest {
     }
 
     @Test
-    @DisplayName("Test error output for missing main class")
+    @DisplayName("Test.java error output for missing main class")
     public void testGetErrorOutputForMissingMainClass() {
         IControlProcess process = new ProcessAdapter("java", "class.java");
         TimeProcessDecorator timedProcess = new TimeProcessDecorator(process, 30000);
@@ -55,6 +55,23 @@ public class ProcessAdapterTest {
             process.startProcess();
             String result = process.getStandardOutput(); 
             System.out.println(result);
+        } catch (Exception e) {
+            System.err.println("Erreur : " + e.getMessage());
+        }
+    }
+
+    @Test
+    @DisplayName("Test the time limit of a process")
+    public void testTimeLimit() {
+        IControlProcess process = new ProcessAdapter("java", "C:/Users/Benji/Documents/COUR/BUT2/SAEA3.01/groupe-b2-s3.a.01/app/src/test/resources/Test.java");
+        TimeProcessDecorator timedProcess = new TimeProcessDecorator(process, 10000);
+        try {
+            timedProcess.startProcess();
+            long startTime = System.currentTimeMillis();
+            int exitCode = timedProcess.waitForProcess();
+            timedProcess.stopProcess();
+            long endTime = System.currentTimeMillis();
+            assertEquals(10, exitCode);
         } catch (Exception e) {
             System.err.println("Erreur : " + e.getMessage());
         }
