@@ -5,7 +5,13 @@ import java.io.IOException;
 
 public abstract class CompilerStrategy implements ICompilerStrategy {
 
-
+    /**
+     * Checks if the language selected is compatible with the compiler
+     * @param sourceFileName
+     * @param languageSelected
+     * @throws IOException
+     * @throws InterruptedException
+     */
     @Override
     public void compile(String sourceFileName, String languageSelected) throws IOException, InterruptedException {
         if (isCompatible(languageSelected)) {
