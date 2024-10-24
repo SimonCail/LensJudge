@@ -5,6 +5,7 @@ import lensjudge.compilation.*;
 import lensjudge.problem.ConstructProblem;
 import lensjudge.problem.TestCase;
 import lensjudge.process.ProcessAdapter;
+import lensjudge.process.TimeProcessDecorator;
 import lensjudge.verification.*;
 
 import java.io.ByteArrayInputStream;
@@ -72,6 +73,7 @@ public class Runner implements IRunnerBuilder {
             compilerStrategy.executeCompilerCommand(sourceFile, compilerStrategy.getBinaryFileName(sourceFile.getAbsolutePath()));
             ProcessAdapter process = execution.execute(sourceFile.getAbsolutePath(), compilerStrategy.getBinaryFileName(sourceFile.getAbsolutePath()));
             process.startProcess();
+            TimeProcessDecorator time = new TimeProcessDecorator(process, 1000);
             String output = process.getStandardOutput();
             String errorOutput = process.getErrorOutput();
             System.out.println("Standard Output: " + output);
