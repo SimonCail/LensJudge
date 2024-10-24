@@ -13,6 +13,7 @@ public class ExecutionJava implements IExecution {
     public ProcessAdapter execute(String sourceFilePath, String binaryFileName) throws IOException, InterruptedException {
         String className = binaryFileName.replace(".class", "");
         ProcessAdapter processAdapter = new ProcessAdapter("java", className);
+        processAdapter.setDirectory(new File(sourceFilePath).getParent());
         return processAdapter;
     }
 }

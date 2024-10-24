@@ -24,11 +24,14 @@ public class Main2 {
         String sourceFilePath4 = "C:/Users/Benji/Documents/COUR/BUT2/SAEA3.01/groupe-b2-s3.a.01/ProgTestSae/TimeThroughTheGlass.java";
         File sourceFile4=new File(sourceFilePath4);
         CompilerJava compilerJava=new CompilerJava();
-        String className = compilerJava.getBinaryFileName(sourceFilePath4);
+        //String className = compilerJava.getBinaryFileName(sourceFilePath4);
+        String className = "TimeThroughTheGlass";
+        System.out.println(className);
         compilerJava.executeCompilerCommand(sourceFile4,null);
         process4=executionJava.execute(sourceFilePath4, className);
         process4.startProcess();
         System.out.println(process4.getStandardOutput());
+        System.out.println(process4.getErrorOutput());
         System.out.println("--------------------------------------------------------------------------------");
     }
 }
