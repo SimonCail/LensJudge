@@ -32,7 +32,9 @@ public class CaseVerification implements IVerification {
                     lineOut = lineOut.replaceAll("\\s", "");
                     lineIn = lineIn.toLowerCase();
                     lineOut = lineOut.toLowerCase();
-                    if (!lineIn.equalsIgnoreCase(lineOut)) {
+                    System.out.println("Comparing lineIn: " + lineIn + " with lineOut: " + lineOut);
+                    if (!lineIn.equals(lineOut)) {
+                        System.out.println("Mismatch: " + lineIn + " does not match " + lineOut);
                         return false;
                     }
                 }
