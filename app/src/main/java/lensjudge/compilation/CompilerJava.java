@@ -12,7 +12,9 @@ public class CompilerJava extends CompilerStrategy {
 
     @Override
     public String getBinaryFileName(String sourceFileName) {
-        return sourceFileName.replace(".java", ".class");
+        File file = new File(sourceFileName);
+        String fileName = file.getName();
+        return fileName.replace(".java", "");
     }
 
     @Override
