@@ -58,15 +58,22 @@ public class MainRunner {
         Runner runner5 = new Runner(new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.py"), testCase5);
         runner5.run();
         */
+        /*
         System.out.println("--------------------------------------------------------------");
         System.out.println("True test 5");
-        TestCase testCase5 = new TestCase("test5" , new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/runnerTest6"), new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/runnerTest6"));
-        Runner runner5 = new Runner(new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.cc"), testCase5);
+        TestCase testCase5 = new TestCase("test5" , new File("/export/etu/matheo.dalmasso/Documents/BUT2/SAE/SAE3.01/groupe-b2-s3.a.01/ProgTestSae/runnerTest6"), new File("/export/etu/matheo.dalmasso/Documents/BUT2/SAE/SAE3.01/groupe-b2-s3.a.01/ProgTestSae/runnerTest6"));
+        Runner runner5 = new Runner(new File("/export/etu/matheo.dalmasso/Documents/BUT2/SAE/SAE3.01/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.cc"), testCase5);
         runner5.run();
         System.out.println("--------------------------------------------------------------");
         System.out.println("False test 5");
-        TestCase testCase6 = new TestCase("test6" , new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/runnerTest2"), new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/runnerTest2"));
-        Runner runner6 = new Runner(new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.cc"), testCase6);
+        TestCase testCase6 = new TestCase("test6" , new File("/export/etu/matheo.dalmasso/Documents/BUT2/SAE/SAE3.01/groupe-b2-s3.a.01/ProgTestSae/runnerTest2"), new File("/export/etu/matheo.dalmasso/Documents/BUT2/SAE/SAE3.01/groupe-b2-s3.a.01/ProgTestSae/runnerTest2"));
+        Runner runner6 = new Runner(new File("/export/etu/matheo.dalmasso/Documents/BUT2/SAE/SAE3.01/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.cc"), testCase6);
         runner6.run();
+         */
+        System.out.println("--------------------------------------------------------------");
+        System.out.println("Test TimeOut");
+        TestCase testCaseTO = new TestCase("TO", new File("/export/etu/matheo.dalmasso/Documents/BUT2/SAE/SAE3.01/groupe-b2-s3.a.01/ProgTestSae/runnerTest"), new File("/export/etu/matheo.dalmasso/Documents/BUT2/SAE/SAE3.01/groupe-b2-s3.a.01/ProgTestSae/runnerTest"));
+        Runner runnerTO = new Runner(new File("/export/etu/matheo.dalmasso/Documents/BUT2/SAE/SAE3.01/groupe-b2-s3.a.01/ProgTestSae/testTimeOut.py"), testCaseTO);
+        runnerTO.run();
     }
 }
