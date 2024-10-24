@@ -53,12 +53,6 @@ public class ProcessAdapter implements IControlProcess {
         }
     }
 
-    public InputStream getInputStream() {
-        if (process == null) {
-            throw new IllegalStateException(PROCESSNOTSTARTED);
-        }
-        return process.getInputStream();
-    }
 
     @Override
     public void startProcess() {

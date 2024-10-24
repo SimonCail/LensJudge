@@ -25,13 +25,19 @@ public class StrictVerification implements IVerification {
                 File fileOut = new File(pathFileOut);
                 BufferedReader br = new BufferedReader(new InputStreamReader(input));
                 BufferedReader br2 = new BufferedReader(new FileReader(fileOut));
+
                 String lineIn;
                 String lineOut;
+
+                System.out.println("Comparaison du fichier avec : " + pathFileOut);
                 while ((lineIn = br.readLine()) != null && (lineOut = br2.readLine()) != null) {
+                    System.out.println("lineIn: " + lineIn + " | lineOut: " + lineOut); // Affiche les lignes comparées
                     if (!lineIn.equals(lineOut)) {
+                        System.out.println("Mismatch: lineIn (" + lineIn + ") != lineOut (" + lineOut + ")");
                         return false;
                     }
                 }
+
                 return true;
             } catch (IOException e) {
                 System.out.println("Error: " + e.getMessage());
@@ -39,4 +45,6 @@ public class StrictVerification implements IVerification {
         }
         return false;
     }
+
+
 }
