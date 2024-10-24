@@ -1,8 +1,13 @@
 package lensjudge.compilation;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CompilerC extends CompilerStrategy {
+
+    private static final Logger LOGGER = Logger.getLogger(CompilerC.class.getName());
 
     /**
      * Checks if the language selected is compatible with the compiler
@@ -36,8 +41,9 @@ public class CompilerC extends CompilerStrategy {
             processBuilder.inheritIO();
             Process process = processBuilder.start();
             process.waitFor();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException | InterruptedException e) {
+            LOGGER.log(Level.SEVERE, "Exception occurred during compilation", e);
+            Thread.currentThread().interrupt();
         }
     }
 
