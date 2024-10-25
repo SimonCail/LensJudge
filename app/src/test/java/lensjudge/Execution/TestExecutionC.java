@@ -14,7 +14,7 @@ public class TestExecutionC {
     @DisplayName("Test ExecutionC")
     public void testExecute() {
         ExecutionC executionC = new ExecutionC();
-        String sourceFilePath = "/export/etu/simon.caillieret/Documents/QDEV/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglassC.c";
+        String sourceFilePath = "SAEA3.01/groupe-b2-s3.a.01/app/src/test/resources/ProgTestSae/test.c";
         File sourceFile=new File(sourceFilePath);
         CompilerC compilerC=new CompilerC();
         String binaryFileName;

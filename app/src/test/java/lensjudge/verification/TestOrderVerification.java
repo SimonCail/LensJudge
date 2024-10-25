@@ -32,9 +32,6 @@ public class TestOrderVerification {
         // Verify
         System.out.println(result); // Return CORRECT
         assertEquals(TypeVerification.CORRECT, result);
-
-        // Cleanup
-        Files.delete(outputPath);
     }
 
     @Test

@@ -14,7 +14,7 @@ public class TestExecutionCPP {
     @DisplayName("Test ExecutionCPP")
     public void testExecute() {
         ExecutionCPP executionCC = new ExecutionCPP();
-        String sourceFilePath = "/export/etu/simon.caillieret/Documents/QDEV/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.cc";
+        String sourceFilePath = "app/src/test/resources/ProgTestSae/timethroughtheglass.cc";
         File sourceFile=new File(sourceFilePath);
         CompilerCPP compilerCPP=new CompilerCPP();
         String binaryFileName;

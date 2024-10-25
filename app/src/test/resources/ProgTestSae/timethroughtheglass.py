@@ -1,1 +1,3 @@
-print("9.999999999999")
+def test():
+    print("HELLO WORLD")
+test()

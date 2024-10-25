@@ -1,13 +1,6 @@
 package lensjudge.Execution;
-
-import lensjudge.compilation.CompilerC;
-import lensjudge.compilation.CompilerPython;
 import lensjudge.process.ProcessAdapter;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.InputStreamReader;
 
 /**
  * The ExecutionPy class implements the IExecution interface and provides
