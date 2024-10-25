@@ -1,0 +1,46 @@
+@startuml
+package lensjudge.process {
+    interface IControlProcess {
+        + getErrorOutput(): String
+        + getStandardOutput(): String
+        + startProcess(): void
+        + waitForProcess(): int
+        + stopProcess(): void
+    }
+
+    class ProcessAdapter {
+        - ProcessBuilder processBuilder
+        - Process process
+        - static final String PROCESSNOTSTARTED
+        + ProcessAdapter(String... command)
+        + setDirectory(String directory): void
+        + startProcess(): void
+        + stopProcess(): void
+        + getStandardOutput(): String
+        + getErrorOutput(): String
+        + waitForProcess(): int
+    }
+
+    class ProcessDecorator {
+        - IControlProcess processControl
+        + ProcessDecorator(IControlProcess processControl)
+        + startProcess(): void
+        + stopProcess(): void
+        + getStandardOutput(): String
+        + getErrorOutput(): String
+        + waitForProcess(): int
+    }
+
+    class TimeProcessDecorator {
+        - long timeLimitMs
+        + TimeProcessDecorator(IControlProcess processControl, long timeLimitMs)
+
+
+    }
+
+    IControlProcess <|.. ProcessAdapter
+    IControlProcess <|.. ProcessDecorator
+    IControlProcess <|-- TimeProcessDecorator
+}
+
+@enduml
