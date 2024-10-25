@@ -14,7 +14,7 @@ public class LensJudge {
     public static void main(String[] args) throws IOException, ParseException {
 
         Options options = new Options();
-        options.addOption("v", "verification", true, "Sélectionner le type de vérification (1-5) : 1 - Strict, 2 - Ordre, 3 - Cas, 4 - Réel, 5 - Un de plusieurs");
+        options.addOption("v", "verification", true, "Select the type of verification (1-5): 1 - Strict, 2 - Order, 3 - Case, 4 - Real numbers, 5 - One of several");
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd;
