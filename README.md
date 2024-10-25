@@ -1,67 +1,85 @@
-# Projet SAE 3.A.01
+# Project SAE 3.A.01
 
-## Répartition des rôles
-    - Mathias Morel : Project manager
-    - Benjamin Cornet : Team member
-    - Mathéo Dalmasso : Team member
-    - Simon Caillieret : Team member
-
----
-
-## Répartition des tâches 
-
-| Fonctionnalité                              | Patron(s) de conception utilisé(s) | Auteur(s)                     |
-| ------------------------------------------- |------------------------------------|-------------------------------|
-| Représentation d'un cas de test             |                                    | Mathéo                        |
-| Représentation d'un problème                | Constructeur                       | Benjamin                      |
-| Configuration d'un problème                 | Constructeur                       | Benjamin                      |
-| Représentation d'un processus               | Adaptateur                         | Benjamin                      |
-| Limitation du temps d'exécution d'un processus| Décorateur                         | Benjamin                      |
-| Limitation de la mémoire d'un processus     | Décorateur                         | Benjamin                      |
-| Compilation d'un programme C                | Stratégie                          | Mathias                       |
-| Compilation d'un programme C++              | Stratégie                          | Mathias                       |
-| Compilation d'un programme Java             | Stratégie                          | Mathias                       |
-| Compilation d'un programme Python           | Stratégie                          | Mathias                       |
-| Exécution d'un programme C compilé          | Stratégie                          | Simon                         |
-| Exécution d'un programme C++ compilé        | Stratégie                          | Simon                         |
-| Exécution d'un programme Java compilé       | Stratégie                          | Simon                         |
-| Vérification stricte de la solution         | Décorateur et Stratégie            | Matheo                        |
-| Vérification avec tolérance sur les réels   | Décorateur et Stratégie            | Matheo                        |
-| Vérification avec tolérance de la casse     | Décorateur et Stratégie            | Matheo                        |
-| Vérification avec tolérance sur les espaces | Décorateur et Stratégie            | Matheo                        |
-| Vérification avec tolérance sur l'ordre     | Décorateur et Stratégie            | Matheo                        |
-| Vérification d'une solution parmi plusieurs | Décorateur et Stratégie            | Matheo                        |
-| Vérification déléguée à un programme externe|                                    |                               |
-| Configuration de l'exécution sur un cas de test| Constructeur                       | Mathias/Matheo                |
-| Programme principal de juge automatique     | Singleton                          | Mathias/Matheo/Simon/Benjamin |
+## Role Assignment
+- Mathias Morel: Project Manager
+- Benjamin Cornet: Team Member
+- Mathéo Dalmasso: Team Member
+- Simon Caillieret: Team Member
 
 ---
 
-### Bibliothèques supplémentaires utilisées
+## Task Assignment
+
+| Feature                                   | Design Pattern(s) Used            | Author(s)                      |
+| ----------------------------------------- |------------------------------------|--------------------------------|
+| Test Case Representation                  |                                    | Mathéo                         |
+| Problem Representation                    | Builder                            | Benjamin                       |
+| Problem Configuration                     | Builder                            | Benjamin                       |
+| Process Representation                    | Adapter                            | Benjamin                       |
+| Execution Time Limitation for a Process   | Decorator                          | Benjamin                       |
+| Memory Limitation for a Process           | Decorator                          | Benjamin                       |
+| C Program Compilation                     | Strategy                           | Mathias                        |
+| C++ Program Compilation                   | Strategy                           | Mathias                        |
+| Java Program Compilation                  | Strategy                           | Mathias                        |
+| Python Program Compilation                | Strategy                           | Mathias                        |
+| Executing a Compiled C Program            | Strategy                           | Simon                          |
+| Executing a Compiled C++ Program          | Strategy                           | Simon                          |
+| Executing a Compiled Java Program         | Strategy                           | Simon                          |
+| Strict Solution Verification              | Decorator and Strategy             | Mathéo                         |
+| Real Number Tolerance Verification        | Decorator and Strategy             | Mathéo                         |
+| Case Sensitivity Tolerance Verification   | Decorator and Strategy             | Mathéo                         |
+| Space Tolerance Verification              | Decorator and Strategy             | Mathéo                         |
+| Order Tolerance Verification              | Decorator and Strategy             | Mathéo                         |
+| One of Several Solutions Verification     | Decorator and Strategy             | Mathéo                         |
+| External Program Delegated Verification   |                                    |                                |
+| Test Case Execution Configuration         | Builder                            | Mathias/Mathéo                 |
+| Main Program for Automatic Judge          | Singleton                          | Mathias/Mathéo/Simon/Benjamin  |
+
+---
+
+### How to Launch the Main Program
+
+To launch the main program, use the following command:
+
+```bash
+./gradlew shadowJar
+```
+
+Then execute the following command:
+
+```bash
+java -jar app/build/libs/lensjudge-shadow-1.0-all.jar ProgTestSae\nameOfTheFile.extension ProgTestSae\file.in ProgTestSae\file.ans -v (1-5)
+```
+-  -v 1 = Strict verification
+-  -v 2 = Order verification
+-  -v 3 = Case verification
+-  -v 4 = Real numbers verification
+-  -v 5 = One of several solutions verification
+
+### Library used
     - AnsiConsole
     - Apache Commons CLI
 
-Nous avons utilisé la bibliothèque AnsiConsole pour mettre en couleur les messages affichés dans la console.
-Nous avons utilisé la bibliothèque Apache Commons CLI pour gérer les arguments passés en ligne de commande.
+We used AnsiConsole to color the output of the program.
+We used the Apache Commons CLI library to handle command-line arguments.
 
-### IA Utilisée
+### IA used
     - Copilot
     - Chatgpt
 
-Nous avons utilisé Copilot notamment pour la correction des erreurs et la génération de code.
+We used Copilot primarily for error correction and code generation.
+We used ChatGPT to gain a deeper understanding of how different design patterns work and to gather insights about our code.
 
-Nous avons utilisé Chatgpt pour comprendre plus précisément comment fonctionne les différents patrons de conception et des informations sur notre code.
+## Commit examples
 
-## Exemples de commit
+### For closing an issue
+    - git commit -m "Fixes #? - Description of the commit"
 
-### Pour fermer une issue
-    - git commit -m "Fixes #? - Description de l'issue"
+### For a bug fix or program changes commit
+    - git commit -m "Description of the commit"
 
-### Pour un commit de correction de bugs / changements dans le programme
-    - git commit -m "Description du commit"
-
-### Pour mentionner une issue
-    - git commit -m "#? - Description du commit"
+### For mentioning an issue 
+    - git commit -m "#? - Description of the commit"
     
 ---
 
