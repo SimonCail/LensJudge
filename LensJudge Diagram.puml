@@ -197,6 +197,11 @@ package lensjudge.runnerbuilder {
         + compile(File sourceFileName, String languageSelected) : void
     }
 
+    class LensJudge{
+        + main(String[] args): void
+    }
+
+    LensJudge <.. IRunnerBuilder
 
     IRunnerBuilder <|.. RunnerBuilder
     IRunnerBuilder <|.. Runner

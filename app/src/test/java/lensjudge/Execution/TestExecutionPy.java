@@ -15,7 +15,7 @@ public class TestExecutionPy {
     @DisplayName("Test ExecutionPy")
     public void testExecute() {
         ExecutionPy executionPy = new ExecutionPy();
-        String sourceFilePath2 = "/export/etu/simon.caillieret/Documents/QDEV/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.py";
+        String sourceFilePath2 = "/SAEA3.01/groupe-b2-s3.a.01/app/src/test/resources/ProgTestSae/timethroughtheglass.py";
         File sourceFile2=new File(sourceFilePath2);
         CompilerPython compilerPython = new CompilerPython();
         compilerPython.executeCompilerCommand(sourceFile2, null);

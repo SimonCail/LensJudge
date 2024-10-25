@@ -1,13 +1,8 @@
 package lensjudge.Execution;
 
-import lensjudge.compilation.CompilerC;
-import lensjudge.compilation.CompilerJava;
 import lensjudge.process.ProcessAdapter;
-
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 /**
  * The ExecutionJava class implements the IExecution interface and provides

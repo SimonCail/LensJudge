@@ -4,7 +4,6 @@ import lensjudge.problem.ConstructProblem;
 import lensjudge.problem.TestCase;
 import lensjudge.verification.IVerification;
 
-import java.io.File;
 import java.io.IOException;
 
 public interface IRunnerBuilder {

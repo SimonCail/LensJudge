@@ -34,9 +34,6 @@ public class TestStrictVerification {
 
         // Verify
         assertEquals(TypeVerification.CORRECT, result);
-
-        // Cleanup
-        Files.delete(outputPath);
     }
 
     @Test
@@ -60,9 +57,6 @@ public class TestStrictVerification {
 
         // Verify
         assertEquals(TypeVerification.WRONG, result);
-
-        // Cleanup
-        Files.delete(outputPath);
     }
 
     @Test

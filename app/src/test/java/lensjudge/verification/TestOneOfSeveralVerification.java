@@ -33,9 +33,6 @@ public class TestOneOfSeveralVerification {
         System.out.println(result); // Return CORRECT
         // Verify
         assertEquals(TypeVerification.CORRECT, result);
-
-        // Cleanup
-        Files.delete(outputPath);
     }
 
     @Test
@@ -58,8 +55,6 @@ public class TestOneOfSeveralVerification {
         System.out.println(result); // Return WRONG
         assertEquals(TypeVerification.WRONG, result);
 
-        // Cleanup
-        Files.delete(outputPath);
     }
 
     @Test
