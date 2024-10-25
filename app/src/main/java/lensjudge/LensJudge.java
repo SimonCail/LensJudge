@@ -4,8 +4,6 @@ import lensjudge.problem.TestCase;
 import lensjudge.runnerbuilder.Runner;
 import lensjudge.verification.*;
 import org.apache.commons.cli.*;
-import org.fusesource.jansi.Ansi;
-import org.fusesource.jansi.AnsiConsole;
 
 import java.io.File;
 import java.io.IOException;
