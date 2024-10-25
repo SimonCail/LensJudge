@@ -4,6 +4,7 @@ import lensjudge.problem.TestCase;
 import lensjudge.runnerbuilder.IRunnerBuilder;
 import lensjudge.runnerbuilder.Runner;
 import lensjudge.runnerbuilder.RunnerBuilder;
+import lensjudge.verification.StrictVerification;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,17 +12,26 @@ import java.io.IOException;
 
 public class MainRunner {
     public static void main(String[] args) throws IOException {
+        StrictVerification strictVerification = new StrictVerification();
         /*
-        System.out.println("True test 1");
-        TestCase testCase = new TestCase("test", new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/runnerTest"), new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/runnerTest"));
-        Runner runner = new Runner(new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.cc"), testCase);
-        runner.run();
+        try {
+            System.out.println("True test 1");
+
+            TestCase testCase = new TestCase("test", new File("/export/etu/matheo.dalmasso/Documents/BUT2/SAE/SAE3.01/groupe-b2-s3.a.01/ProgTestSae/runnerTest"), new File("/export/etu/matheo.dalmasso/Documents/BUT2/SAE/SAE3.01/groupe-b2-s3.a.01/ProgTestSae/runnerTest"));
+            Runner runner = new Runner(new File("/export/etu/matheo.dalmasso/Documents/BUT2/SAE/SAE3.01/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.cc"), testCase);
+            runner.run(strictVerification);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(debut);
         System.out.println("--------------------------------------------------------------------------");
         System.out.println("False test 1");
-        TestCase testCase2 = new TestCase("test2" , new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/runnerTest2"), new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/runnerTest2"));
-        Runner runner2 = new Runner(new File("/export/etu/mathias.morel/Documents/BUT2/SAE/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.cc"), testCase2);
-        runner2.run();
+        TestCase testCase2 = new TestCase("test2" , new File("/export/etu/matheo.dalmasso/Documents/BUT2/SAE/SAE3.01/groupe-b2-s3.a.01/ProgTestSae/runnerTest2"), new File("/export/etu/matheo.dalmasso/Documents/BUT2/SAE/SAE3.01/groupe-b2-s3.a.01/ProgTestSae/runnerTest2"));
+        Runner runner2 = new Runner(new File("/export/etu/matheo.dalmasso/Documents/BUT2/SAE/SAE3.01/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.cc"), testCase2);
+        runner2.run(strictVerification);
         System.out.println("--------------------------------------------------------------------------");
+        System.exit(0);
+
          */
         /*
         System.out.println("--------------------------------------------------------------");
@@ -71,10 +81,12 @@ public class MainRunner {
         Runner runner6 = new Runner(new File("/export/etu/matheo.dalmasso/Documents/BUT2/SAE/SAE3.01/groupe-b2-s3.a.01/ProgTestSae/timethroughtheglass.cc"), testCase6);
         runner6.run();
          */
+        /*
         System.out.println("--------------------------------------------------------------");
         System.out.println("Test TimeOut");
         TestCase testCaseTO = new TestCase("TO", new File("/export/etu/matheo.dalmasso/Documents/BUT2/SAE/SAE3.01/groupe-b2-s3.a.01/ProgTestSae/runnerTest"), new File("/export/etu/matheo.dalmasso/Documents/BUT2/SAE/SAE3.01/groupe-b2-s3.a.01/ProgTestSae/runnerTest"));
         Runner runnerTO = new Runner(new File("/export/etu/matheo.dalmasso/Documents/BUT2/SAE/SAE3.01/groupe-b2-s3.a.01/ProgTestSae/testTimeOut.py"), testCaseTO);
-        runnerTO.run();
+        runnerTO.run(strictVerification);
+        */
     }
 }

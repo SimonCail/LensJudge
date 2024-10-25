@@ -4,5 +4,6 @@ public enum TypeVerification {
     CORRECT,
     WRONG,
     TIMEOUT,
-    ERROR
+    ERROR,
+    COMPILATION_ERROR
 }
