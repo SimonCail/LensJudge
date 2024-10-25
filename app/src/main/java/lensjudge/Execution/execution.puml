@@ -1,0 +1,28 @@
+@startuml
+package lensjudge.execution {
+interface IExecution {
+    + execute(String sourceFilePath, String binaryFileName) : ProcessAdapter
+}
+
+class ExecutionC {
+    + execute(String sourceFilePath, String binaryFileName): ProcessAdapter
+}
+
+class ExecutionCPP {
+    + execute(String sourceFilePath, String binaryFileName): ProcessAdapter
+}
+
+class ExecutionJava {
+    + execute(String sourceFilePath, String binaryFileName): ProcessAdapter
+}
+
+class ExecutionPy {
+    + execute(String sourceFilePath, String binaryFileName): ProcessAdapter
+}
+
+IExecution <|.. ExecutionC
+IExecution <|.. ExecutionCPP
+IExecution <|.. ExecutionJava
+IExecution <|.. ExecutionPy
+}
+@enduml

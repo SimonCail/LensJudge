@@ -30,6 +30,7 @@ public class TimeProcessDecorator extends ProcessDecorator {
      * Start the process and set a timer to stop it after the time limit
      * @throws IOException if the process cannot be started
      */
+    @Override
     public void startProcess() throws IOException {
         super.startProcess();
         Timer timer = new Timer();

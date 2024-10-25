@@ -2,12 +2,17 @@ package lensjudge.compilation;
 
 import java.io.File;
 
+/**
+ * The CompilerPython class extends the CompilerStrategy class and provides
+ * the functionality to compile Python programs.
+ */
 public class CompilerPython extends CompilerStrategy {
 
     /**
-     * Checks if the language selected is compatible with the compiler
-     * @param languageSelected
-     * @return
+     * Checks if the language selected is compatible with the compiler.
+     *
+     * @param languageSelected the language selected
+     * @return true if the language is compatible, false otherwise
      */
     @Override
     public boolean isCompatible(String languageSelected) {
@@ -15,9 +20,10 @@ public class CompilerPython extends CompilerStrategy {
     }
 
     /**
-     * Returns the binary file name
-     * @param sourceFileName
-     * @return
+     * Returns the binary file name.
+     *
+     * @param sourceFileName the name of the source file
+     * @return the name of the binary file
      */
     @Override
     public String getBinaryFileName(String sourceFileName) {
@@ -25,9 +31,10 @@ public class CompilerPython extends CompilerStrategy {
     }
 
     /**
-     * Executes the compiler command
-     * @param sourceFile
-     * @param binaryFile
+     * Executes the compiler command.
+     *
+     * @param sourceFile the source file
+     * @param binaryFile the binary file
      */
     @Override
     public void executeCompilerCommand(File sourceFile, String binaryFile) {
@@ -42,8 +49,9 @@ public class CompilerPython extends CompilerStrategy {
     }
 
     /**
-     * Returns the language
-     * @return
+     * Returns the language supported by this compiler.
+     *
+     * @return the language supported by this compiler
      */
     protected String getLanguage() {
         return "python";
