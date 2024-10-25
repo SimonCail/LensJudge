@@ -1,8 +1,6 @@
 package lensjudge.process;
 
 import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Decorator class for the IControlProcess interface that adds a time limit to the process
@@ -18,7 +16,7 @@ public abstract class ProcessDecorator implements IControlProcess {
      *
      * @param processControl the process to be decorated
      */
-    public ProcessDecorator(IControlProcess processControl) {
+    protected ProcessDecorator(IControlProcess processControl) {
         this.processControl = processControl;
     }
 
