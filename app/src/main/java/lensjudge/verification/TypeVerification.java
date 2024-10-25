@@ -1,8 +1,8 @@
 package lensjudge.verification;
 
 public enum TypeVerification {
-    TRUE,
-    FALSE,
+    CORRECT,
+    WRONG,
     TIMEOUT,
     ERROR
 }

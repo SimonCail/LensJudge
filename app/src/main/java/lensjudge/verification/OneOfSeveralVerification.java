@@ -34,13 +34,13 @@ public class OneOfSeveralVerification implements IVerification {
                 }
                 lineIn = br.readLine();
                 if (arrOut.contains(lineIn)) {
-                    return TypeVerification.TRUE;
+                    return TypeVerification.CORRECT;
                 }
-                return TypeVerification.FALSE;
+                return TypeVerification.WRONG;
             } catch (IOException e) {
                 System.out.println("Error: " + e.getMessage());
             }
         }
-        return TypeVerification.FALSE;
+        return TypeVerification.WRONG;
     }
 }

@@ -42,16 +42,16 @@ public class OrderVerification implements IVerification {
                     System.out.println("Comparing line: " + lineIn);
                     if (!arrOut.contains(lineIn)) {
                         System.out.println("Mismatch: " + lineIn + " not found in output file");
-                        return TypeVerification.FALSE;
+                        return TypeVerification.WRONG;
                     }
                     arrOut.remove(lineIn);
                 }
 
-                return TypeVerification.TRUE;
+                return TypeVerification.CORRECT;
             } catch (IOException e) {
                 System.out.println("Error: " + e.getMessage());
             }
         }
-        return TypeVerification.FALSE;
+        return TypeVerification.WRONG;
     }
 }
