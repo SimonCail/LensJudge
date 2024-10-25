@@ -119,5 +119,13 @@ class ProcessAdapterTest {
         assertDoesNotThrow(() -> processAdapter.stopProcess(), "Should not throw an exception when stopping a non-started process.");
     }
 
+    @Test
+    @DisplayName("Test setting the directory of a process")
+    void testSetDirectoryMethod() {
+        ProcessAdapter processAdapter = new ProcessAdapter("cmd", "/c", "echo", "test"); // Commands for windows
+        processAdapter.setDirectory("invalid/directory/path");
+        assertDoesNotThrow(() -> processAdapter.startProcess());
+    }
+
 
 }

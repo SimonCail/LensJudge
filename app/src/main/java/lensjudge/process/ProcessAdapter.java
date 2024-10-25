@@ -114,7 +114,6 @@ public class ProcessAdapter implements IControlProcess {
         try {
             this.process = processBuilder.start();
         }catch (IOException e){
-            e.printStackTrace();
             LOGGER.printf(Level.WARN, PROCESSNOTSTARTED);
         }
     }
