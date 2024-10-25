@@ -18,9 +18,6 @@ public enum TypeVerification {
      * Indicates that the verification process timed out.
      */
     TIMEOUT,
-
-    /**
-     * Indicates that an error occurred during the verification process.
-     */
-    ERROR
+    ERROR,
+    COMPILATION_ERROR
 }

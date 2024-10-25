@@ -44,7 +44,7 @@ public class Runner implements IRunnerBuilder {
         return constructProblem;
     }
 
-    public void run() throws IOException {
+    public void run(IVerification verification) throws IOException {
         String extension = sourceFile.getName().substring(sourceFile.getName().lastIndexOf(".") + 1);
         switch (extension) {
             case "c":
@@ -64,48 +64,21 @@ public class Runner implements IRunnerBuilder {
                 execution = new ExecutionCPP();
                 break;
             default:
-                throw new IllegalArgumentException("Language not supported or not found");
+                System.out.println(TypeVerification.COMPILATION_ERROR);
+                System.exit(0);
         }
 
         try {
-            System.out.println("Compiling: " + sourceFile.getAbsolutePath());
             compilerStrategy.executeCompilerCommand(sourceFile, compilerStrategy.getBinaryFileName(sourceFile.getAbsolutePath()));
             ProcessAdapter process = execution.execute(sourceFile.getAbsolutePath(), compilerStrategy.getBinaryFileName(sourceFile.getAbsolutePath()));
             TimeProcessDecorator timeProcess = new TimeProcessDecorator(process, 1000);
             timeProcess.startProcess();
+            int exit = timeProcess.waitForProcess();
             String output = timeProcess.getStandardOutput();
             String errorOutput = timeProcess.getErrorOutput();
-            if (errorOutput != null) {
-                System.out.println("Error: " + errorOutput);
+            if (exit != 0) {
+                System.out.println(errorOutput);
                 System.exit(0);
-            }
-            System.out.println("Standard Output: " + output);
-            System.out.println("Veuillez choisir votre type de vérification : ");
-            System.out.println("1. Vérification stricte");
-            System.out.println("2. Vérification sans tenir compte de l'ordre");
-            System.out.println("3. Vérification sans tenir compte de la casse et des espaces");
-            System.out.println("4. Vérification avec des arrondies sur les nombres");
-            System.out.println("5. Vérification d'une solution parmi plusieurs \n" );
-            int verifChoice = scanner.nextInt();
-            switch (verifChoice){
-                case 1:
-                    verification = new StrictVerification();
-                    break;
-                case 2:
-                    verification = new OrderVerification();
-                    break;
-                case 3:
-                    verification = new CaseVerification();
-                    break;
-                case 4:
-                    verification = new RealVerification();
-                    break;
-                case 5:
-                    verification = new OneOfSeveralVerification();
-                    break;
-                default:
-                    System.out.println("Invalid choice , defaulting to strict verification");
-                    verification = new StrictVerification();
             }
             TypeVerification result = verification.verify(new ByteArrayInputStream(output.getBytes()), testCase.getPathFileOut());
             System.out.println("Vérification : " + result);
