@@ -1,6 +1,7 @@
 package lensjudge.compilation;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * The CompilerContext class is responsible for managing the compilation process
@@ -23,13 +24,13 @@ public class CompilerContext {
     }
 
     /**
-     * Compiles the source file using the set strategy.
-     *
-     * @param sourceFile the source file to be compiled
-     * @param languageSelected the language selected for compilation
-     * @throws Exception if no compatible strategy is set or if an error occurs during compilation
+     * Compiles the source file
+     * @param sourceFile the source file
+     * @param languageSelected the language selected
+     * @throws InterruptedException
+     * @throws IOException
      */
-    public void compile(File sourceFile, String languageSelected) throws Exception {
+    public void compile(File sourceFile, String languageSelected) throws IOException, InterruptedException{
         if (strategy == null || !strategy.isCompatible(languageSelected)) {
             throw new IllegalArgumentException("No compatible strategy set for the selected language.");
         }
