@@ -28,7 +28,7 @@ package lensjudge.runnerbuilder {
         + setConstructProblem(ConstructProblem constructProblem): void
         + getTestCase(): TestCase
         + getConstructProblem(): ConstructProblem
-        + run() : void
+        + run(IVerification verification) : void
         }
 
     IRunnerBuilder <|.. RunnerBuilder

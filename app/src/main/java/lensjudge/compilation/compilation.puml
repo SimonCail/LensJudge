@@ -1,50 +1,50 @@
 @startuml
 package lensjudge.compilation {
-    interface ICompilerStrategy {
-        + compile(String sourceFileName, String languageSelected) : void
-        + isCompatible(String languageSelected) : boolean
-        + getBinaryFileName(String sourceFileName) : String
-        + executeCompilerCommand(File sourceFile, String binaryFile) : void
-    }
+interface ICompilerStrategy {
+    + compile(String sourceFileName, String languageSelected) : void
+    + isCompatible(String languageSelected) : boolean
+    + getBinaryFileName(String sourceFileName) : String
+    + executeCompilerCommand(File sourceFile, String binaryFile) : void
+}
 
-    class CompilerC {
+class CompilerC {
     + isCompatible(String languageSelected) : boolean
     + getBinaryFileName(String sourceFileName) : String
     + executeCompilerCommand(File sourceFile, String binaryFile) : void
     # getLanguage() : String
-    }
+}
 
-    class CompilerCPP {
+class CompilerCPP {
     + isCompatible(String languageSelected) : boolean
     + getBinaryFileName(String sourceFileName) : String
     + executeCompilerCommand(File sourceFile, String binaryFile) : void
     # getLanguage() : String
-    }
+}
 
-    class CompilerJava {
+class CompilerJava {
     + isCompatible(String languageSelected) : boolean
     + getBinaryFileName(String sourceFileName) : String
     + executeCompilerCommand(File sourceFile, String binaryFile) : void
     # getLanguage() : String
-    }
+}
 
-    class CompilerPython {
+class CompilerPython {
     + isCompatible(String languageSelected) : boolean
     + getBinaryFileName(String sourceFileName) : String
     + executeCompilerCommand(File sourceFile, String binaryFile) : void
     # getLanguage() : String
-    }
+}
 
-    class CompilerStrategy{
+class CompilerStrategy{
     - strategy : ICompilerStrategy
     + setStrategy(ICompilerStrategy strategy) : void
     + compile(File sourceFileName, String languageSelected) : void
-    }
+}
 
-    CompilerStrategy <|-- CompilerC
-    CompilerStrategy <|-- CompilerCPP
-    CompilerStrategy <|-- CompilerJava
-    CompilerStrategy <|-- CompilerPython
-    ICompilerStrategy <|.. CompilerStrategy
+CompilerStrategy <|-- CompilerC
+CompilerStrategy <|-- CompilerCPP
+CompilerStrategy <|-- CompilerJava
+CompilerStrategy <|-- CompilerPython
+ICompilerStrategy <|.. CompilerStrategy
 
 @enduml
