@@ -84,7 +84,7 @@ public class TestProblemConstructProblem {
 
         StringBuilder output = new StringBuilder();
         problem.forEach(testCase -> output.append(testCase.getFileName()).append(" "));
-
+        System.out.println(output.toString().trim());
         assertEquals("Test 1 Test 2", output.toString().trim(), "The forEach method should concatenate file names");
     }
 

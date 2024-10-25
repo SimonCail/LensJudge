@@ -148,7 +148,7 @@ public class ConstructProblem implements Iterable<TestCase>{
      * Set the memory limit for the problem
      *
      * @param memoryLimit Memory limit for the problem
-     * @return
+     * @return ConstructProblem
      */
     public ConstructProblem withMemoryLimit(int memoryLimit) {
         this.memoryLimit = memoryLimit;

@@ -1,3 +1,4 @@
+/*
 package lensjudge.problem;
 
 import lensjudge.verification.CaseVerification;
@@ -32,3 +33,4 @@ public class Main {
         }
     }
 }
+*/
