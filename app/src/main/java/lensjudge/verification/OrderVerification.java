@@ -54,17 +54,12 @@ public class OrderVerification implements IVerification {
                 String lineOut;
                 ArrayList<String> arrOut = new ArrayList<>();
 
-                System.out.println("Reading output file: " + pathFileOut);
                 while ((lineOut = br2.readLine()) != null) {
                     arrOut.add(lineOut);
-                    System.out.println("Read from output file: " + lineOut);
                 }
 
-                System.out.println("Comparing input stream with output file");
                 while ((lineIn = br.readLine()) != null) {
-                    System.out.println("Comparing line: " + lineIn);
                     if (!arrOut.contains(lineIn)) {
-                        System.out.println("Mismatch: " + lineIn + " not found in output file");
                         return TypeVerification.WRONG;
                     }
                     arrOut.remove(lineIn);
