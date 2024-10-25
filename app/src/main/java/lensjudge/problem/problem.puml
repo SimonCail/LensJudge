@@ -1,0 +1,38 @@
+@startuml
+package lensjudge.problem {
+    class ConstructProblem {
+        - List<TestCase> testCases
+        - int timeLimit
+        - int memoryLimit
+        - CaseVerification verification
+        + iterator(): Iterator<TestCase>
+        + forEach(Consumer<? super TestCase> action): void
+        + spliterator(): Spliterator<TestCase>
+        - ConstructProblem()
+        + getTimeLimit(): int
+        + getMemoryLimit(): int
+        + getVerification(): CaseVerification
+        + static newInstance(): ConstructProblem
+        + withTestCase(TestCase... testCases): ConstructProblem
+        + withTimeLimit(int timeLimit): ConstructProblem
+        + withMemoryLimit(int memoryLimit): ConstructProblem
+        + withVerification(CaseVerification verification): ConstructProblem
+        + build(): ConstructProblem
+    }
+
+    class TestCase {
+        - fileName : String
+        - fileIn : File
+        - fileOut : File
+        - pathFileIn : String
+        - pathFileOut : String
+        + TestCase(String Name, File fileIn, File fileOut)
+        + getFileName(): String
+        + getPathFileIn(): String
+        + getPathFileOut(): String
+        + exists(): boolean
+    }
+
+    Iterable<|.. ConstructProblem
+}
+@enduml
