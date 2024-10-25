@@ -11,10 +11,10 @@ import java.io.InputStreamReader;
 import static java.lang.Math.round;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ProcessAdapterTest {
+class ProcessAdapterTest {
     @Test
     @DisplayName("Return the standard output of a Java program")
-    public void testGetStandardOutput() {
+    void testGetStandardOutput() {
         IControlProcess process = new ProcessAdapter("java", "C:/Users/Benji/Documents/COUR/BUT2/SAEA3.01/groupe-b2-s3.a.01/app/src/test/resources/Test.java");
         TimeProcessDecorator timedProcess = new TimeProcessDecorator(process, 5000);
         try{
@@ -32,7 +32,7 @@ public class ProcessAdapterTest {
 
     @Test
     @DisplayName("Test.java error output for missing main class")
-    public void testGetErrorOutputForMissingMainClass() {
+    void testGetErrorOutputForMissingMainClass() {
         IControlProcess process = new ProcessAdapter("java", "class.java");
         TimeProcessDecorator timedProcess = new TimeProcessDecorator(process, 30000);
 
@@ -53,12 +53,13 @@ public class ProcessAdapterTest {
 
     @Test
     @DisplayName("Return the result of the dir command")
-    public void testDir(){
+    void testDir(){
         IControlProcess process = new ProcessAdapter("cmd", "/c", "dir"); // Windows command for listing files in a directory
         try {
             process.startProcess();
             String result = process.getStandardOutput(); 
             System.out.println(result);
+            assertNotNull(result);
         } catch (Exception e) {
             System.err.println("Erreur : " + e.getMessage());
         }
@@ -66,7 +67,7 @@ public class ProcessAdapterTest {
 
     @Test
     @DisplayName("Test the time limit of a process")
-    public void testTimeLimit() {
+    void testTimeLimit() {
         IControlProcess process = new ProcessAdapter("ping", "localhost", "-n", "5"); // Windows command for waiting 5 sec
 
         TimeProcessDecorator timedProcess = new TimeProcessDecorator(process, 200); // Limit the process to 2 sec
@@ -82,14 +83,14 @@ public class ProcessAdapterTest {
             processDuration = round(processDuration / 100.0) * 100;
             System.out.println(processDuration);
 
-            assertTrue(processDuration == 200, "Process duration: " + processDuration);
+            assertEquals(200, processDuration, "Process duration: " + processDuration);
         } catch (Exception e) {
             System.err.println("Erreur : " + e.getMessage());
         }
     }
 
     @Test
-    public void testGetInputStream() throws IOException {
+    void testGetInputStream() throws IOException {
         ProcessAdapter processAdapter = new ProcessAdapter("cmd", "/c", "echo", "test"); // Commands for windows
         processAdapter.startProcess();
 
@@ -111,11 +112,19 @@ public class ProcessAdapterTest {
 
     @Test
     @DisplayName("Test stopping a process")
-    public void testStopProcessWhenNotStarted() {
+    void testStopProcessWhenNotStarted() {
         ProcessAdapter processAdapter = new ProcessAdapter("cmd", "/c", "echo", "test");
         processAdapter.stopProcess();
 
         assertDoesNotThrow(() -> processAdapter.stopProcess(), "Should not throw an exception when stopping a non-started process.");
+    }
+
+    @Test
+    @DisplayName("Test setting the directory of a process")
+    void testSetDirectoryMethod() {
+        ProcessAdapter processAdapter = new ProcessAdapter("cmd", "/c", "echo", "test"); // Commands for windows
+        processAdapter.setDirectory("invalid/directory/path");
+        assertDoesNotThrow(() -> processAdapter.startProcess());
     }
 
 

@@ -3,6 +3,7 @@ package lensjudge.runnerbuilder;
 import lensjudge.compilation.*;
 import lensjudge.problem.ConstructProblem;
 import lensjudge.problem.TestCase;
+import lensjudge.verification.IVerification;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,7 +31,7 @@ public class RunnerBuilder implements IRunnerBuilder {
     }
 
     @Override
-    public void run() throws IOException {
+    public void run(IVerification verification) throws IOException {
 
     }
 }
