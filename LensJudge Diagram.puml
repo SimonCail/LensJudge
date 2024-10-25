@@ -1,159 +1,230 @@
 @startuml
-interface ICompilation {
-    + compile(): void
-}
+package lensjudge.runnerbuilder {
+    interface IRunnerBuilder {
+        + setTestCase(TestCase testCase): void
+        + setConstructProblem(ConstructProblem constructProblem): void
+        + getTestCase(): TestCase
+        + getConstructProblem(): ConstructProblem
+        + run() : void
+    }
 
-class CompilationC {
+    interface IVerification {
+        + isNotEmpty(String pathFileIn): boolean
+        + isFileExists(String pathFileIn): boolean
+        + verify(InputStream input, String pathFileOut): boolean
+    }
 
-}
+    interface IControlProcess {
+        + getErrorOutput(): String
+        + getStandardOutput(): String
+        + startProcess(): void
+        + waitForProcess(): int
+        + stopProcess(): void
+    }
+
+    interface IExecution {
+        + execute(String sourceFilePath, String binaryFileName) : ProcessAdapter
+    }
+
+    interface ICompilerStrategy {
+        + compile(String sourceFileName, String languageSelected) : void
+        + isCompatible(String languageSelected) : boolean
+        + getBinaryFileName(String sourceFileName) : String
+        + executeCompilerCommand(File sourceFile, String binaryFile) : void
+    }
+
+    class RunnerBuilder {
+        + setTestCase(TestCase testCase): void
+        + setConstructProblem(ConstructProblem constructProblem): void
+        + getTestCase(): TestCase
+        + getConstructProblem(): ConstructProblem
+        + run() : void
+    }
+
+    class Runner {
+        + static Scanner scanner
+        - sourceFile : File
+        - constructProblem : ConstructProblem
+        - compilerStrategy : ICompilerStrategy
+        - execution : IExecution
+        - verification : IVerification
+        + Runner(File sourceFile, TestCase testCase)
+        + setTestCase(TestCase testCase): void
+        + setConstructProblem(ConstructProblem constructProblem): void
+        + getTestCase(): TestCase
+        + getConstructProblem(): ConstructProblem
+        + run(IVerification verification) : void
+    }
+
+    class RealVerification {
+        + isNotEmpty(String pathFileIn): boolean
+        + isFileExists(String pathFileIn): boolean
+        + verify(InputStream input, String pathFileOut): boolean
+    }
+
+    class CaseVerification {
+        + isNotEmpty(String pathFileIn): boolean
+        + isFileExists(String pathFileIn): boolean
+        + verify(InputStream input, String pathFileOut): boolean
+    }
+
+    class StrictVerification {
+        + isNotEmpty(String pathFileIn): boolean
+        + isFileExists(String pathFileIn): boolean
+        + verify(InputStream input, String pathFileOut): boolean
+    }
+
+    class OrderVerification {
+        + isNotEmpty(String pathFileIn): boolean
+        + isFileExists(String pathFileIn): boolean
+        + verify(InputStream input, String pathFileOut): boolean
+    }
+
+    class OneOfSeveralVerification {
+        + isNotEmpty(String pathFileIn): boolean
+        + isFileExists(String pathFileIn): boolean
+        + verify(InputStream input, String pathFileOut): boolean
+    }
+
+    class ProcessAdapter {
+        - ProcessBuilder processBuilder
+        - Process process
+        - static final String PROCESSNOTSTARTED
+        + ProcessAdapter(String... command)
+        + setDirectory(String directory): void
+        + startProcess(): void
+        + stopProcess(): void
+        + getStandardOutput(): String
+        + getErrorOutput(): String
+        + waitForProcess(): int
+    }
+
+    class ProcessDecorator {
+        - IControlProcess processControl
+        + ProcessDecorator(IControlProcess processControl)
+        + startProcess(): void
+        + stopProcess(): void
+        + getStandardOutput(): String
+        + getErrorOutput(): String
+        + waitForProcess(): int
+    }
+
+    class TimeProcessDecorator {
+        - long timeLimitMs
+        + TimeProcessDecorator(IControlProcess processControl, long timeLimitMs)
+    }
+
+    class ConstructProblem {
+        - List<TestCase> testCases
+        - int timeLimit
+        - int memoryLimit
+        - CaseVerification verification
+        + iterator(): Iterator<TestCase>
+        + forEach(Consumer<? super TestCase> action): void
+        + spliterator(): Spliterator<TestCase>
+        - ConstructProblem()
+        + getTimeLimit(): int
+        + getMemoryLimit(): int
+        + getVerification(): CaseVerification
+        + static newInstance(): ConstructProblem
+        + withTestCase(TestCase... testCases): ConstructProblem
+        + withTimeLimit(int timeLimit): ConstructProblem
+        + withMemoryLimit(int memoryLimit): ConstructProblem
+        + withVerification(CaseVerification verification): ConstructProblem
+        + build(): ConstructProblem
+    }
+
+    class TestCase {
+        - fileName : String
+        - fileIn : File
+        - fileOut : File
+        - pathFileIn : String
+        - pathFileOut : String
+        + TestCase(String Name, File fileIn, File fileOut)
+        + getFileName(): String
+        + getPathFileIn(): String
+        + getPathFileOut(): String
+        + exists(): boolean
+    }
+
+    class ExecutionC {
+        + execute(String sourceFilePath, String binaryFileName): ProcessAdapter
+    }
+
+    class ExecutionCPP {
+        + execute(String sourceFilePath, String binaryFileName): ProcessAdapter
+    }
+
+    class ExecutionJava {
+        + execute(String sourceFilePath, String binaryFileName): ProcessAdapter
+    }
+
+    class ExecutionPy {
+        + execute(String sourceFilePath, String binaryFileName): ProcessAdapter
+    }
+
+    class CompilerC {
+        + isCompatible(String languageSelected) : boolean
+        + getBinaryFileName(String sourceFileName) : String
+        + executeCompilerCommand(File sourceFile, String binaryFile) : void
+        # getLanguage() : String
+    }
+
+    class CompilerCPP {
+        + isCompatible(String languageSelected) : boolean
+        + getBinaryFileName(String sourceFileName) : String
+        + executeCompilerCommand(File sourceFile, String binaryFile) : void
+        # getLanguage() : String
+    }
+
+    class CompilerJava {
+        + isCompatible(String languageSelected) : boolean
+        + getBinaryFileName(String sourceFileName) : String
+        + executeCompilerCommand(File sourceFile, String binaryFile) : void
+        # getLanguage() : String
+    }
+
+    class CompilerPython {
+        + isCompatible(String languageSelected) : boolean
+        + getBinaryFileName(String sourceFileName) : String
+        + executeCompilerCommand(File sourceFile, String binaryFile) : void
+        # getLanguage() : String
+    }
+
+    class CompilerStrategy{
+        - strategy : ICompilerStrategy
+        + setStrategy(ICompilerStrategy strategy) : void
+        + compile(File sourceFileName, String languageSelected) : void
+    }
 
 
-
-class CompilationJava {
-
-}
-
-class CompilationCPlusPlus{
-
-}
-
-interface IVerification {
-    + verify(): void
-}
-
-class ReelVerification {
-
-}
-
-class CaseVerification {
-
-}
-
-class SpaceVerification {
-
-}
-
-class OrderVerification {
-
-}
-
-class SolSeveralVerification {
-
-}
-
-abstract class AbstractExecution {
-    # {abstract} isCompiled(File file): boolean
-    # execute(): void
-}
-
-class PythonExecution {
-
-}
-
-class CExecution {
-
-}
-
-class JavaExecution {
-
-}
-
-class CPlusPlusExecution {
-
-}
-
-interface IRepresentation {
-    + representation(): void
-}
-
-class TestRepresentation {
-
-}
-
-class ProblemRepresentation {
-
-}
-
-class ProcessRepresentation {
-
-}
-
-interface IConfig {
-    + config(): void
-}
-
-class ProblemConfig {
-
-}
-
-class ExecuteTestConfig {
-
-}
-
-class ExternalVerification {
-    + verify(): void
-}
-
-class TimeLimitation {
-    + isOutOfTime() : void
-}
-
-class MemoryLimitation {
-    + isOutOfMemory() : void
-}
-
-class Judge {
-    - judge : Judge
-    -Judge()
-    + getInstance(): Judge
-}
-
-class Main {
-    + main(): void
-}
+    IRunnerBuilder <|.. RunnerBuilder
+    IRunnerBuilder <|.. Runner
+    IVerification <|.. RealVerification
+    IVerification <|.. CaseVerification
+    IVerification <|.. StrictVerification
+    IVerification <|.. OrderVerification
+    IVerification <|.. OneOfSeveralVerification
+    IControlProcess <|.. ProcessAdapter
+    IControlProcess <|.. ProcessDecorator
+    IControlProcess <|-- TimeProcessDecorator
+    Iterable <|.. ConstructProblem
+    IExecution <|.. ExecutionC
+    IExecution <|.. ExecutionCPP
+    IExecution <|.. ExecutionJava
+    IExecution <|.. ExecutionPy
+    CompilerStrategy <|-- CompilerC
+    CompilerStrategy <|-- CompilerCPP
+    CompilerStrategy <|-- CompilerJava
+    CompilerStrategy <|-- CompilerPython
+    ICompilerStrategy <|.. CompilerStrategy
+    IRunnerBuilder <.. IExecution
+    IRunnerBuilder <.. IVerification
+    IRunnerBuilder <.. IControlProcess
+    IRunnerBuilder <.. ICompilerStrategy
+    ConstructProblem <.. TestCase
+    IRunnerBuilder <.. TestCase
 
 
-
-
-
-IVerification <|.. SolSeveralVerification
-IVerification <|.. OrderVerification
-IVerification <|.. SpaceVerification
-IVerification <|.. CaseVerification
-IVerification <|.. ReelVerification
-
-
-ICompilation <|.. CompilationC
-ICompilation <|.. CompilationJava
-ICompilation <|.. CompilationCPlusPlus
-
-
-AbstractExecution <|-- PythonExecution
-AbstractExecution <|-- CExecution
-AbstractExecution <|-- JavaExecution
-AbstractExecution <|-- CPlusPlusExecution
-
-
-IRepresentation <|.. TestRepresentation
-IRepresentation <|.. ProblemRepresentation
-IRepresentation <|.. ProcessRepresentation
-
-
-IConfig <|.. ProblemConfig
-IConfig <|.. ExecuteTestConfig
-
-TimeLimitation <|-- Exception
-MemoryLimitation <|-- Exception
-
-Judge -- Main
-Judge -- MemoryLimitation
-Judge -- TimeLimitation
-Judge -- ExternalVerification
-ProblemConfig -- ProblemRepresentation
-ExecuteTestConfig -- TestRepresentation
-AbstractExecution -- ICompilation
-IVerification -- AbstractExecution
-Judge -- IVerification
-IConfig -- Judge
 
 @enduml
