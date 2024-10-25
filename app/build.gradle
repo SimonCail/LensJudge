@@ -23,6 +23,10 @@ dependencies {
 
     // This dependency is used by the application.
     implementation libs.guava
+
+    implementation 'org.fusesource.jansi:jansi:2.4.0'
+
+    implementation 'commons-cli:commons-cli:1.4'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
