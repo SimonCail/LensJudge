@@ -7,13 +7,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestExecutionJava {
     @Test
     @DisplayName("Test ExecutionJava")
-    public void testExecute() {
+    public void testExecute() throws IOException, InterruptedException {
         ExecutionJava executionJava = new ExecutionJava();
         String sourceFilePath = "/export/etu/simon.caillieret/Documents/QDEV/SAE/groupe-b2-s3.a.01/ProgTestSae/TimeThroughTheGlass.java";
         File sourceFile=new File(sourceFilePath);
