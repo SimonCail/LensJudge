@@ -26,6 +26,7 @@ public class TestCompilerC {
         String sourceFileName = "test.c";
         String expected = "test.exe";
         String actual = compilerC.getBinaryFileName(sourceFileName);
+        System.out.println(actual);
         assertTrue(expected.equals(actual));
     }
 

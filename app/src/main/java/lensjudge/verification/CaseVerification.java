@@ -19,7 +19,7 @@ public class CaseVerification implements IVerification {
     }
 
     @Override
-    public boolean verify(InputStream input, String pathFileOut) {
+    public TypeVerification verify(InputStream input, String pathFileOut) {
         if (isNotEmpty(pathFileOut)) {
             try {
                 File fileOut = new File(pathFileOut);
@@ -35,14 +35,14 @@ public class CaseVerification implements IVerification {
                     System.out.println("Comparing lineIn: " + lineIn + " with lineOut: " + lineOut);
                     if (!lineIn.equals(lineOut)) {
                         System.out.println("Mismatch: " + lineIn + " does not match " + lineOut);
-                        return false;
+                        return TypeVerification.WRONG;
                     }
                 }
-                return true;
+                return TypeVerification.CORRECT;
             } catch (IOException e) {
                 System.out.println("Error: " + e.getMessage());
             }
         }
-        return false;
+        return TypeVerification.WRONG;
     }
 }

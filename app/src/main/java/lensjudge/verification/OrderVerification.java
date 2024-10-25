@@ -21,7 +21,7 @@ public class OrderVerification implements IVerification {
     }
 
     @Override
-    public boolean verify(InputStream input, String pathFileOut) {
+    public TypeVerification verify(InputStream input, String pathFileOut) {
         if (isNotEmpty(pathFileOut)) {
             try {
                 File fileOut = new File(pathFileOut);
@@ -42,16 +42,16 @@ public class OrderVerification implements IVerification {
                     System.out.println("Comparing line: " + lineIn);
                     if (!arrOut.contains(lineIn)) {
                         System.out.println("Mismatch: " + lineIn + " not found in output file");
-                        return false;
+                        return TypeVerification.WRONG;
                     }
                     arrOut.remove(lineIn);
                 }
 
-                return true;
+                return TypeVerification.CORRECT;
             } catch (IOException e) {
                 System.out.println("Error: " + e.getMessage());
             }
         }
-        return false;
+        return TypeVerification.WRONG;
     }
 }

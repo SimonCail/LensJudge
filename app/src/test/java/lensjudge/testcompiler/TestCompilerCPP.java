@@ -15,7 +15,7 @@ public class TestCompilerCPP {
     @DisplayName("Test isCompatible()")
     public void testIsCompatible() {
         CompilerCPP compilerCPP = new CompilerCPP();
-        assertTrue(compilerCPP.isCompatible("cpp"));
+        assertTrue(compilerCPP.isCompatible("cc"));
         assertFalse(compilerCPP.isCompatible("java"));
     }
 
@@ -23,7 +23,7 @@ public class TestCompilerCPP {
     @DisplayName("Test getBinaryFileName()")
     public void testGetBinaryFileName() {
         CompilerCPP compilerCPP = new CompilerCPP();
-        String sourceFileName = "test.cpp";
+        String sourceFileName = "test.cc";
         String expected = "test.exe";
         String actual = compilerCPP.getBinaryFileName(sourceFileName);
         assertTrue(expected.equals(actual));
