@@ -33,7 +33,6 @@ package lensjudge.problem {
         + exists(): boolean
     }
 
-
-
+    Iterable<|.. ConstructProblem
 }
 @enduml
