@@ -1,0 +1,37 @@
+@startuml
+package lensjudge.runnerbuilder {
+    interface IRunnerBuilder {
+        + setTestCase(TestCase testCase): void
+        + setConstructProblem(ConstructProblem constructProblem): void
+        + getTestCase(): TestCase
+        + getConstructProblem(): ConstructProblem
+        + run() : void
+    }
+
+    class RunnerBuilder {
+        + setTestCase(TestCase testCase): void
+        + setConstructProblem(ConstructProblem constructProblem): void
+        + getTestCase(): TestCase
+        + getConstructProblem(): ConstructProblem
+        + run() : void
+    }
+
+    class Runner {
+        + static Scanner scanner
+        - sourceFile : File
+        - constructProblem : ConstructProblem
+        - compilerStrategy : ICompilerStrategy
+        - execution : IExecution
+        - verification : IVerification
+        + Runner(File sourceFile, TestCase testCase)
+        + setTestCase(TestCase testCase): void
+        + setConstructProblem(ConstructProblem constructProblem): void
+        + getTestCase(): TestCase
+        + getConstructProblem(): ConstructProblem
+        + run() : void
+        }
+
+    IRunnerBuilder <|.. RunnerBuilder
+    IRunnerBuilder <|.. Runner
+}
+@enduml
