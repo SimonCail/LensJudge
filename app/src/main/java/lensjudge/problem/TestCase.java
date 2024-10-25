@@ -12,16 +12,6 @@ public class TestCase {
     private String fileName;
 
     /**
-     * File for the input
-     */
-    private File fileIn;
-
-    /**
-     * File for the output
-     */
-    private File fileOut;
-
-    /**
      * Path for the input and output files
      */
     private String pathFileIn;
@@ -77,8 +67,14 @@ public class TestCase {
      * @return boolean
      */
     public boolean exists () {
-        fileIn = new File(pathFileIn);
-        fileOut = new File(pathFileOut);
+        /**
+         * File for the input
+         */
+        File fileIn = new File(pathFileIn);
+        /**
+         * File for the output
+         */
+        File fileOut = new File(pathFileOut);
         return fileIn.exists() && fileOut.exists();
     }
 }
