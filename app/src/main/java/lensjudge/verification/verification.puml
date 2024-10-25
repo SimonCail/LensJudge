@@ -1,0 +1,45 @@
+@startuml
+package lensjudge.verification {
+    interface IVerification {
+        + isNotEmpty(String pathFileIn): boolean
+        + isFileExists(String pathFileIn): boolean
+        + verify(InputStream input, String pathFileOut): boolean
+    }
+
+    class RealVerification {
+        + isNotEmpty(String pathFileIn): boolean
+        + isFileExists(String pathFileIn): boolean
+        + verify(InputStream input, String pathFileOut): boolean
+    }
+
+    class CaseVerification {
+        + isNotEmpty(String pathFileIn): boolean
+        + isFileExists(String pathFileIn): boolean
+        + verify(InputStream input, String pathFileOut): boolean
+    }
+
+    class StrictVerification {
+        + isNotEmpty(String pathFileIn): boolean
+        + isFileExists(String pathFileIn): boolean
+        + verify(InputStream input, String pathFileOut): boolean
+    }
+
+    class OrderVerification {
+        + isNotEmpty(String pathFileIn): boolean
+        + isFileExists(String pathFileIn): boolean
+        + verify(InputStream input, String pathFileOut): boolean
+    }
+
+    class OneOfSeveralVerification {
+        + isNotEmpty(String pathFileIn): boolean
+        + isFileExists(String pathFileIn): boolean
+        + verify(InputStream input, String pathFileOut): boolean
+    }
+
+    IVerification <|.. RealVerification
+    IVerification <|.. CaseVerification
+    IVerification <|.. StrictVerification
+    IVerification <|.. OrderVerification
+    IVerification <|.. OneOfSeveralVerification
+}
+@enduml
