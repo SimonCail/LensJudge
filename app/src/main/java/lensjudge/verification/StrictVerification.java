@@ -34,16 +34,16 @@ public class StrictVerification implements IVerification {
                     System.out.println("lineIn: " + lineIn + " | lineOut: " + lineOut); // Affiche les lignes comparées
                     if (!lineIn.equals(lineOut)) {
                         System.out.println("Mismatch: lineIn (" + lineIn + ") != lineOut (" + lineOut + ")");
-                        return TypeVerification.FALSE;
+                        return TypeVerification.WRONG;
                     }
                 }
 
-                return TypeVerification.TRUE;
+                return TypeVerification.CORRECT;
             } catch (IOException e) {
                 System.out.println("Error: " + e.getMessage());
             }
         }
-        return TypeVerification.FALSE;
+        return TypeVerification.WRONG;
     }
 
 

@@ -34,15 +34,15 @@ public class RealVerification implements IVerification {
                     arrIn[compt] = Float.parseFloat(lineIn);
                     arrOut[compt] = Float.parseFloat(lineOut);
                     if (Math.abs(arrIn[compt] - arrOut[compt]) > 0.0001) {
-                        return TypeVerification.FALSE;
+                        return TypeVerification.WRONG;
                     }
                     compt++;
                 }
-                return TypeVerification.TRUE;
+                return TypeVerification.CORRECT;
             } catch (IOException e) {
                 System.out.println("Error: " + e.getMessage());
             }
         }
-        return TypeVerification.FALSE;
+        return TypeVerification.WRONG;
     }
 }

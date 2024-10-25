@@ -35,14 +35,14 @@ public class CaseVerification implements IVerification {
                     System.out.println("Comparing lineIn: " + lineIn + " with lineOut: " + lineOut);
                     if (!lineIn.equals(lineOut)) {
                         System.out.println("Mismatch: " + lineIn + " does not match " + lineOut);
-                        return TypeVerification.FALSE;
+                        return TypeVerification.WRONG;
                     }
                 }
-                return TypeVerification.TRUE;
+                return TypeVerification.CORRECT;
             } catch (IOException e) {
                 System.out.println("Error: " + e.getMessage());
             }
         }
-        return TypeVerification.FALSE;
+        return TypeVerification.WRONG;
     }
 }
