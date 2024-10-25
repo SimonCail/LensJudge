@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 public class CompilerC extends CompilerStrategy {
 
     private static final Logger LOGGER = Logger.getLogger(CompilerC.class.getName());
@@ -26,7 +27,10 @@ public class CompilerC extends CompilerStrategy {
      */
     @Override
     public String getBinaryFileName(String sourceFileName) {
-        return sourceFileName.replace("C.c", ".exe");
+        int size = sourceFileName.length();
+        String binaryFileName = sourceFileName.substring(0, size - 1);
+        binaryFileName = binaryFileName + "exe";
+        return binaryFileName;
     }
 
     /**

@@ -11,8 +11,9 @@ import java.io.InputStreamReader;
 
 public class ExecutionJava implements IExecution {
     public ProcessAdapter execute(String sourceFilePath, String binaryFileName) throws IOException, InterruptedException {
-        ProcessAdapter processAdapter=new ProcessAdapter(binaryFileName);
-        processAdapter.startProcess();
+        String className = binaryFileName.replace(".class", "");
+        ProcessAdapter processAdapter = new ProcessAdapter("java", className);
+        processAdapter.setDirectory(new File(sourceFilePath).getParent());
         return processAdapter;
     }
 }

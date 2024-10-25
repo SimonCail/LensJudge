@@ -20,7 +20,7 @@ public class OneOfSeveralVerification implements IVerification {
     }
 
     @Override
-    public boolean verify(InputStream input, String pathFileOut) {
+    public TypeVerification verify(InputStream input, String pathFileOut) {
         if (isNotEmpty(pathFileOut)) {
             try {
                 File fileOut = new File(pathFileOut);
@@ -33,11 +33,14 @@ public class OneOfSeveralVerification implements IVerification {
                     arrOut.add(lineOut);
                 }
                 lineIn = br.readLine();
-                return arrOut.contains(lineIn);
+                if (arrOut.contains(lineIn)) {
+                    return TypeVerification.CORRECT;
+                }
+                return TypeVerification.WRONG;
             } catch (IOException e) {
                 System.out.println("Error: " + e.getMessage());
             }
         }
-        return false;
+        return TypeVerification.WRONG;
     }
 }
