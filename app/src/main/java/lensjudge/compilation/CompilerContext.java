@@ -1,6 +1,7 @@
 package lensjudge.compilation;
 
 import java.io.File;
+import java.io.IOException;
 
 public class CompilerContext {
 
@@ -21,9 +22,10 @@ public class CompilerContext {
      * Compiles the source file
      * @param sourceFile the source file
      * @param languageSelected the language selected
-     * @throws Exception
+     * @throws InterruptedException
+     * @throws IOException
      */
-    public void compile(File sourceFile, String languageSelected) throws Exception {
+    public void compile(File sourceFile, String languageSelected) throws IOException , InterruptedException{
         if (strategy == null || !strategy.isCompatible(languageSelected)) {
             throw new IllegalArgumentException("No compatible strategy set for the selected language.");
         }
