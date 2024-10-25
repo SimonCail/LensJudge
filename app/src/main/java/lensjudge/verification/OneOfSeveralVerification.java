@@ -3,7 +3,18 @@ package lensjudge.verification;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * The OneOfSeveralVerification class implements the IVerification interface and provides
+ * methods to verify if a line from an input stream matches any line in a specified file.
+ */
 public class OneOfSeveralVerification implements IVerification {
+
+    /**
+     * Checks if the file at the given path is not empty.
+     *
+     * @param pathFileIn the path to the file
+     * @return true if the file is not empty, false otherwise
+     */
     @Override
     public boolean isNotEmpty(String pathFileIn) {
         if (isFileExists(pathFileIn)) {
@@ -13,12 +24,25 @@ public class OneOfSeveralVerification implements IVerification {
         return false;
     }
 
+    /**
+     * Checks if the file at the given path exists.
+     *
+     * @param pathFileIn the path to the file
+     * @return true if the file exists, false otherwise
+     */
     @Override
     public boolean isFileExists(String pathFileIn) {
         File fileIn = new File(pathFileIn);
         return fileIn.exists();
     }
 
+    /**
+     * Verifies if a line from the input stream matches any line in the file at the given path.
+     *
+     * @param input the input stream to verify
+     * @param pathFileOut the path to the file to compare against
+     * @return the result of the verification
+     */
     @Override
     public TypeVerification verify(InputStream input, String pathFileOut) {
         if (isNotEmpty(pathFileOut)) {
@@ -34,13 +58,13 @@ public class OneOfSeveralVerification implements IVerification {
                 }
                 lineIn = br.readLine();
                 if (arrOut.contains(lineIn)) {
-                    return TypeVerification.TRUE;
+                    return TypeVerification.CORRECT;
                 }
-                return TypeVerification.FALSE;
+                return TypeVerification.WRONG;
             } catch (IOException e) {
                 System.out.println("Error: " + e.getMessage());
             }
         }
-        return TypeVerification.FALSE;
+        return TypeVerification.WRONG;
     }
 }
